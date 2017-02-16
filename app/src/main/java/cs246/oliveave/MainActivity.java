@@ -3,6 +3,8 @@ package cs246.oliveave;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import cs246.oliveave.R;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
