@@ -16,9 +16,9 @@ public class AdminMenu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_menu);
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        /*FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("message");
-        myRef.setValue("Hello, world!");
+        myRef.setValue("Hello, world!");*/
     }
 
     //mDatabase = FirebaseDatabase.getInstance().getReference();
