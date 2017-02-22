@@ -21,6 +21,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
+
+    // add login and sign in button here.
+    // It would be a good idea to add the adminBtn here as well or hide it a little better
     @Override
     public void onClick(View v) {
         // Add buttons here
