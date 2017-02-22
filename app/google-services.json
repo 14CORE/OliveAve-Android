@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "211379461992",
+    "firebase_url": "https://oliveavecs246.firebaseio.com",
+    "project_id": "oliveavecs246",
+    "storage_bucket": "oliveavecs246.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:211379461992:android:7429298fe498a70f",
+        "android_client_info": {
+          "package_name": "cs246.oliveave"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "211379461992-4odljc7c1ou09l1bk8e6btbl9s8k3ovi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "cs246.oliveave",
+            "certificate_hash": "c1ed9668363c828c6c08ec3cbd8b0d7bccd0b787"
+          }
+        },
+        {
+          "client_id": "211379461992-q6p8au3phlqb5rputl8srmtojrlijauo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrMlpeA1thRpJxl-TIoIWDatzMxXvwJ34"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "211379461992-q6p8au3phlqb5rputl8srmtojrlijauo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
