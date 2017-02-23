@@ -10,4 +10,47 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="cs246.oliveave.AdminMenu">
 
+    <EditText
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/userEmail"
+        android:textSize="50dp"
+        android:hint="Enter email"
+        android:imeOptions="actionDone"
+        android:textAlignment="center"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:text="CLEAR"
+        android:id="@+id/clearUserID"
+
+        android:onClick="clearUserInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="65dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/emailContinue"
+        android:layout_alignStart="@+id/emailContinue"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:text="CONTINUE"
+        android:id="@+id/emailContinue"
+
+        android:onClick="continueToAdminOptions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/clearUserID"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="44dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
 </RelativeLayout>

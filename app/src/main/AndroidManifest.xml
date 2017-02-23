@@ -15,7 +15,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AdminMenu"></activity>
+        <activity android:name=".AdminMenu" />
+        <activity android:name=".PointsActivity"></activity>
     </application>
 
 </manifest>
