@@ -26,8 +26,10 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:25.1.1'
     testCompile 'junit:junit:4.12'
-    // THis is the firebase-auth object
+    // This is the firebase-authentication
     compile 'com.google.firebase:firebase-auth:10.2.0'
+    // THis is the firebase database
+    compile 'com.google.firebase:firebase-database:10.2.0'
 }
 
 //FIREBASE

@@ -44,12 +44,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonSignIn.setOnClickListener(this);
 
         //Check if user is already signed-in
-        //if(firebaseAuth.getCurrentUser() != null) {
-        //  // profile activity here
-        //finish();
-        //startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+        if(firebaseAuth.getCurrentUser() != null) {
+            // profile activity here
+        finish();
+        startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
 
-        //}
+        }
 
     }
 
@@ -80,10 +80,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // user register successfully
-                            //Toast.makeText(MainActivity.this, "Registered Successfully", Toast.LENGTH_SHORT).show();
-                            //progressDialog.dismiss();
-                            //finish();
-                            //startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+                            Toast.makeText(MainActivity.this, "Registered Successfully", Toast.LENGTH_SHORT).show();
+                            progressDialog.dismiss();
+                            finish();
+                            startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
                         } else {
                             progressDialog.dismiss();
                             Toast.makeText(MainActivity.this, "Registration Failed", Toast.LENGTH_SHORT).show();
@@ -122,11 +122,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         progressDialog.dismiss();
 
-                        //if(task.isSuccessful()) {
+                        if(task.isSuccessful()) {
                         //start the profile activity
-                        //  finish();
-                        //startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
-                        //}
+                          finish();
+                        startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+                        }
 
                     }
                 });
