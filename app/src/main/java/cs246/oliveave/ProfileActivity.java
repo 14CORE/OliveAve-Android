@@ -88,7 +88,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         super.onStart();
 
         FirebaseUser user = firebaseAuth.getCurrentUser();
-        final DatabaseReference userRef = databaseReference.child("points");
+        final DatabaseReference userRef = databaseReference.child(user.getUid());
 
         userRef.addValueEventListener(new ValueEventListener() {
             @Override
