@@ -19,7 +19,8 @@
         </activity>
         <activity android:name=".AdminMenu" />
         <activity android:name=".ProfileActivity" />
-        <activity android:name=".PointsActivity"></activity>
+        <activity android:name=".PointsActivity" />
+        <activity android:name=".RetrievePoints"></activity>
     </application>
 
 </manifest>

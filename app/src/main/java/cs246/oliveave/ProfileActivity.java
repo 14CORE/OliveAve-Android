@@ -11,18 +11,23 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class ProfileActivity extends AppCompatActivity implements View.OnClickListener{
 
     private FirebaseAuth firebaseAuth;
     private TextView textViewUserEmail;
     private Button buttonLogout;
+    private TextView retrievePoints;
 
     private DatabaseReference databaseReference;
     private EditText editTextPoints;
     private Button buttonSave;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +46,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         editTextPoints = (EditText) findViewById(R.id.editTextPoints);
         buttonSave = (Button) findViewById(R.id.savePoints);
 
-        FirebaseUser user = firebaseAuth.getCurrentUser();
+        FirebaseUser user = firebaseAuth.getInstance().getCurrentUser();
 
         textViewUserEmail = (TextView) findViewById(R.id.textViewUserEmail);
 
@@ -50,6 +55,10 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
         buttonLogout.setOnClickListener(this);
         buttonSave.setOnClickListener(this);
+
+        retrievePoints = (TextView) findViewById(R.id.retrievePoints);
+
+        retrievePoints.setText("Points go here");
 
     }
 
@@ -60,9 +69,25 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
         FirebaseUser user = firebaseAuth.getCurrentUser();
 
-        databaseReference.child(user.getUid()).setValue(userPoints);
+        //databaseReference.child(user.getUid()).setValue(userPoints);
+        databaseReference.child(user.getUid()).setValue(points);
 
         Toast.makeText(this, "Points Saved...", Toast.LENGTH_SHORT).show();
+
+        databaseReference.child(points).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String value = dataSnapshot.getValue(String.class);
+                //retrievePoints is my TextView
+                retrievePoints.setText(value);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
 
     }
 
@@ -79,4 +104,5 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         }
 
     }
+
 }
