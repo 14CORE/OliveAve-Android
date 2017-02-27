@@ -11,15 +11,21 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class ProfileActivity extends AppCompatActivity implements View.OnClickListener{
 
     private FirebaseAuth firebaseAuth;
     private TextView textViewUserEmail;
     private Button buttonLogout;
-
+    private TextView retrievePoints;
     private DatabaseReference databaseReference;
     private EditText editTextPoints;
     private Button buttonSave;
@@ -37,34 +43,32 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         }
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
-
         editTextPoints = (EditText) findViewById(R.id.editTextPoints);
         buttonSave = (Button) findViewById(R.id.savePoints);
-
-        FirebaseUser user = firebaseAuth.getCurrentUser();
-
+        FirebaseUser user = firebaseAuth.getInstance().getCurrentUser();
         textViewUserEmail = (TextView) findViewById(R.id.textViewUserEmail);
-
         textViewUserEmail.setText("Welcome " + user.getEmail());
         buttonLogout = (Button) findViewById(R.id.buttonLogOut);
-
         buttonLogout.setOnClickListener(this);
         buttonSave.setOnClickListener(this);
+        retrievePoints = (TextView) findViewById(R.id.retrievePoints);
+        //loadPoints();
 
     }
 
-    private void savePoints(){
+    private void savePoints() {
         String points = editTextPoints.getText().toString().trim();
 
         UserPoints userPoints = new UserPoints(points);
 
         FirebaseUser user = firebaseAuth.getCurrentUser();
+        final DatabaseReference userRef = databaseReference.child(user.getUid());
 
-        databaseReference.child(user.getUid()).setValue(userPoints);
-
+        userRef.setValue(userPoints);
         Toast.makeText(this, "Points Saved...", Toast.LENGTH_SHORT).show();
 
     }
+
 
     @Override
     public void onClick(View v) {
@@ -79,4 +83,50 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         }
 
     }
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        final DatabaseReference userRef = databaseReference.child(user.getUid());
+
+        userRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+            UserPoints userPoints = dataSnapshot.getValue(UserPoints.class);
+                retrievePoints.setText(userPoints.points);
+
+                //String value = dataSnapshot.getValue(String.class);
+                //retrievePoints.setText(value);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                //throw databaseError.toException();
+                Toast.makeText(ProfileActivity.this, "Failed to load points.",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+    }
+
 }
+
+
+
+/* To retrieve data
+
+ userRef.addValueEventListener(new ValueEventListener() {
+@Override
+public void onDataChange(DataSnapshot dataSnapshot) {
+    String value = dataSnapshot.getValue(String.class);
+    retrievePoints.setText(value);
+}
+    @Override
+    public void onCancelled(DatabaseError databaseError) {
+        throw databaseError.toException();
+
+    }
+});
+
+*/

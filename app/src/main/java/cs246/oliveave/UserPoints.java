@@ -12,8 +12,8 @@ public class UserPoints {
     }
 
     public UserPoints(){
-
-
+        // Default constructor required for calls to DataSnapshot.getValue(UserPoints.class)
     }
+
 }
 
