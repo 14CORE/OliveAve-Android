@@ -1,34 +1,50 @@
 package cs246.oliveave;
 
-import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class AdminMenu extends AppCompatActivity {
 
     Button confirmBtn;
     Button clearBtn;
     EditText userInput;
-    //private DatabaseReference mDatabase;
+    //private FirebaseDatabase dbFirebase;
+    private DatabaseReference mDatabase;
+    private FirebaseAuth fbAuth;
+    TextView adminName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_menu);
 
+        fbAuth = FirebaseAuth.getInstance();
+        //dbFirebase = FirebaseDatabase.getInstance();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
+        FirebaseUser _admin = fbAuth.getCurrentUser();
+
+
         clearBtn = (Button)findViewById(R.id.clearUserID);
         confirmBtn = (Button) findViewById(R.id.emailContinue);
         userInput = (EditText) findViewById(R.id.userEmail);
+        adminName = (TextView) findViewById(R.id.activeAdmin);
+
+        adminName.setText("Admin session for: " + _admin.getEmail());
 
         checkValidation();
 
@@ -36,7 +52,6 @@ public class AdminMenu extends AppCompatActivity {
 
 
     }
-
 
     //validation for text in input
     private void checkValidation() {
@@ -76,7 +91,7 @@ public class AdminMenu extends AppCompatActivity {
 
 
     public void continueToAdminOptions(View view){
-        Intent intent = new Intent(this, PointsActivity.class);
+        Intent intent = new Intent(this, AdminAddPoints.class);
         startActivity(intent);
     }
 

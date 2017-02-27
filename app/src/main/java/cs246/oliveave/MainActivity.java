@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     public void adminBtn(View view) {
-        Intent i = new Intent(this, AdminMenu.class);
+        Intent i = new Intent(this, AdminSignIn.class);
         startActivity(i);
 
     }
