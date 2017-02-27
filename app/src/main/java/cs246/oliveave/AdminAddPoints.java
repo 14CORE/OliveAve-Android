@@ -3,7 +3,7 @@ package cs246.oliveave;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class PointsActivity extends AppCompatActivity {
+public class AdminAddPoints extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
