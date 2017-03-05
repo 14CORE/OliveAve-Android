@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">OliveAve</string>
     <string name="carlos_test">Hola</string>
+    <string name="username_error">\"error\"</string>
+    <string name="password_error">password error</string>
+    <string name="login_error">login error</string>
 
 </resources>

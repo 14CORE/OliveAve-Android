@@ -19,7 +19,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import cs246.oliveave.R;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, LoginView {
 
     private Button buttonRegister;
     private Button buttonSignIn;
@@ -46,9 +46,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //Check if user is already signed-in
         if(firebaseAuth.getCurrentUser() != null) {
             // profile activity here
-        finish();
-        startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
-
+            finish();
+            startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
         }
 
     }
@@ -80,18 +79,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // user register successfully
-                            Toast.makeText(MainActivity.this, "Registered Successfully", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, "Registered Successfully",
+                                    Toast.LENGTH_SHORT).show();
                             progressDialog.dismiss();
                             finish();
                             startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
                         } else {
                             progressDialog.dismiss();
-                            Toast.makeText(MainActivity.this, "Registration Failed", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, "Registration Failed",
+                                    Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
-
-
     }
 
     private void userLogin() {
@@ -123,22 +122,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         progressDialog.dismiss();
 
                         if(task.isSuccessful()) {
-                        //start the profile activity
-                          finish();
-                        startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+                            //start the profile activity
+                            finish();
+                            startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+                        } else {
+                            progressDialog.dismiss();
+                            Toast.makeText(MainActivity.this, "Login Failed. Please confirm login and password",
+                                    Toast.LENGTH_SHORT).show();
                         }
-
                     }
                 });
-
-
     }
 
 
     public void adminBtn(View view) {
         Intent i = new Intent(this, AdminSignIn.class);
         startActivity(i);
-
     }
 
 
@@ -146,16 +145,42 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         if (v == buttonRegister) {
             registerUser();
-
         }
 
         if (v == buttonSignIn) {
             userLogin();
-
         }
     }
+
+    @Override
+    public String getUsername() {
+        return editTextEmail.getText().toString().trim();
+    }
+
+    @Override
+    public String getPassword() {
+        return editTextPassword.getText().toString().trim();
+    }
+
+    @Override
+    public void showUsernameError(int resId) {
+        Toast.makeText(this, getString(resId), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showPasswordError(int pasId) {
+        Toast.makeText(this, getString(pasId), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void startMainActivity() {
+        finish();
+        startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+    }
+
+    @Override
+    public void showLoginError(int logId) {
+        progressDialog.dismiss();
+        Toast.makeText(MainActivity.this, getString(logId), Toast.LENGTH_SHORT).show();
+    }
 }
-
-
-// HEY GUYS (ANDERSON!!!)
-// HEY GUYS (BRUNO)
