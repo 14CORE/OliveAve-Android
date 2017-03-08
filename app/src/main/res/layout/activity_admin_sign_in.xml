@@ -11,6 +11,17 @@
     tools:context="cs246.oliveave.AdminSignIn">
 
     <EditText
+        android:hint="Please enter username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/adminUsername"
+        android:inputType="textEmailAddress"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:focusable="true"/>
+
+    <EditText
         android:hint="Password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -33,13 +44,4 @@
         android:id="@+id/adminSignInButton"
         android:onClick="adminSignIn"/>
 
-    <EditText
-        android:hint="Please enter username"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/adminUsername"
-        android:inputType="textEmailAddress"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
 </RelativeLayout>

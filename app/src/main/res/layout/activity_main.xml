@@ -9,7 +9,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="cs246.oliveave.MainActivity">
+    tools:context="cs246.oliveave.ViewPoints">
 
     <ImageView
         android:layout_width="wrap_content"
@@ -17,60 +17,77 @@
         android:contentDescription="@string/app_name"
         app:srcCompat="@drawable/logo"
         android:id="@+id/imageView"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <Button
-        android:text="ADMIN"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="22dp"
-        android:layout_marginStart="22dp"
-        android:layout_marginBottom="12dp"
-        android:id="@+id/admin_btn"
-        android:onClick="adminBtn"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_centerHorizontal="true" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
+        android:inputType="textEmailAddress"
         android:ems="10"
-        android:layout_below="@+id/imageView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="57dp"
-        android:id="@+id/editTextEmail"
-        android:hint="Email" />
+        android:id="@+id/edit_text_email_id"
+        android:hint="Email"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:ems="10"
-        android:layout_below="@+id/editTextEmail"
-        android:layout_alignRight="@+id/editTextEmail"
-        android:layout_alignEnd="@+id/editTextEmail"
-        android:id="@+id/editTextPassword"
-        android:hint="Password" />
+        android:id="@+id/edit_text_password"
+        android:hint="Password"
+        android:layout_below="@+id/edit_text_email_id"
+        android:layout_alignLeft="@+id/edit_text_email_id"
+        android:layout_alignStart="@+id/edit_text_email_id"
+        android:layout_marginTop="47dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <Button
-        android:text="Sign Up"
+        android:text="ADMIN"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editTextPassword"
-        android:layout_alignLeft="@+id/editTextPassword"
-        android:layout_alignStart="@+id/editTextPassword"
-        android:id="@+id/buttonSignUp" />
+        android:layout_marginLeft="17dp"
+        android:layout_marginStart="17dp"
+        android:id="@+id/admin_btn"
+        android:onClick="adminBtn"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <Button
-        android:text="SignIn"
+        android:text="New User? PLEASE SIGN UP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editTextPassword"
-        android:layout_alignRight="@+id/editTextPassword"
-        android:layout_alignEnd="@+id/editTextPassword"
-        android:id="@+id/buttonSignIn" />
+        android:id="@+id/buttonSignUp"
+        android:background="@color/colorPrimary"
+        android:layout_marginBottom="17dp"
+        android:textColor="@color/white"
+        android:layout_above="@+id/imageView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:onClick="signIn"/>
+
+    <Button
+        android:id="@+id/button_user_log_in"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onLoginClicked"
+        android:background="@color/colorPrimary"
+        android:padding="10dp"
+        android:text="LOG IN"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:layout_below="@+id/edit_text_password"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="21dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 </RelativeLayout>

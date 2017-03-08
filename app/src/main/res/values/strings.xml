@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">OliveAve</string>
-    <string name="carlos_test">Hola</string>
+    <string name="loading">Loading</string>
 
 </resources>

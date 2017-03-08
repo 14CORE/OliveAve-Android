@@ -6,51 +6,74 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.io.Console;
+
 
 public class AdminMenu extends AppCompatActivity {
 
-    Button confirmBtn;
     Button clearBtn;
     EditText userInput;
-    //private FirebaseDatabase dbFirebase;
+    TextView adminName;
+    String emailToSearch;
+    private FirebaseDatabase dbFirebase;
     private DatabaseReference mDatabase;
     private FirebaseAuth fbAuth;
-    TextView adminName;
 
+    String ref;
+    final String TAG = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_menu);
 
-        fbAuth = FirebaseAuth.getInstance();
-        //dbFirebase = FirebaseDatabase.getInstance();
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-
-        FirebaseUser _admin = fbAuth.getCurrentUser();
-
-
-        clearBtn = (Button)findViewById(R.id.clearUserID);
-        confirmBtn = (Button) findViewById(R.id.emailContinue);
         userInput = (EditText) findViewById(R.id.userEmail);
         adminName = (TextView) findViewById(R.id.activeAdmin);
 
-        adminName.setText("Admin session for: " + _admin.getEmail());
+        FirebaseUser _admin = fbAuth.getCurrentUser();
+        fbAuth = FirebaseAuth.getInstance();
+        dbFirebase = FirebaseDatabase.getInstance();
+        mDatabase = dbFirebase.getReference();
 
+
+        adminName.setText("Admin session for: " + _admin.getEmail());
+        //String lookUser = mDatabase.getDatabase().getReference().equals()
+        //userInput = mDatabase.getDatabase().getReference().equals("carlos@email.com")toString();
         checkValidation();
 
         userInput.addTextChangedListener(mWatcher);
 
+        mDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                //get all of the children at the root level
+                Iterable<DataSnapshot> children = dataSnapshot.getChildren();
 
+                //loop through the databse
+                for(DataSnapshot child: children){
+                    child.getValue();
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     //validation for text in input
@@ -61,6 +84,8 @@ public class AdminMenu extends AppCompatActivity {
             clearBtn.setEnabled(false);
         else
             clearBtn.setEnabled(true);
+
+        //String userEmail = mDatabase.child(emailToSearch).toString();
 
     }
 
@@ -92,6 +117,7 @@ public class AdminMenu extends AppCompatActivity {
 
     public void continueToAdminOptions(View view){
         Intent intent = new Intent(this, AdminAddPoints.class);
+        intent.putExtra("userEmail", emailToSearch);
         startActivity(intent);
     }
 

@@ -17,10 +17,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ViewPoints" />
         <activity android:name=".AdminMenu" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".AdminAddPoints" />
-        <activity android:name=".AdminSignIn"></activity>
+        <activity android:name=".AdminSignIn" />
+        <activity android:name=".SignUpActivity"/>
+
     </application>
 
 </manifest>

@@ -11,14 +11,11 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import java.util.ArrayList;
 
 public class ProfileActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -75,7 +72,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         if(v == buttonLogout){
             firebaseAuth.signOut();
             finish();
-            startActivity(new Intent(this, MainActivity.class));
+            startActivity(new Intent(this, ViewPoints.class));
         }
 
         if(v == buttonSave){
