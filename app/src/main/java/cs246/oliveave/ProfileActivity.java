@@ -110,14 +110,11 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             public void onDataChange(DataSnapshot dataSnapshot) {
             UserPoints userPoints = dataSnapshot.getValue(UserPoints.class);
                 retrievePoints.setText(userPoints.points);
-
-                //String value = dataSnapshot.getValue(String.class);
-                //retrievePoints.setText(value);
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                //throw databaseError.toException();
+                databaseError.toException();
                 Toast.makeText(ProfileActivity.this, "Failed to load points.",Toast.LENGTH_SHORT).show();
             }
         });
@@ -127,21 +124,3 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
 }
 
-
-
-/* To retrieve data
-
- userRef.addValueEventListener(new ValueEventListener() {
-@Override
-public void onDataChange(DataSnapshot dataSnapshot) {
-    String value = dataSnapshot.getValue(String.class);
-    retrievePoints.setText(value);
-}
-    @Override
-    public void onCancelled(DatabaseError databaseError) {
-        throw databaseError.toException();
-
-    }
-});
-
-*/
