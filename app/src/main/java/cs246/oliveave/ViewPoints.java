@@ -25,6 +25,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
+import com.journeyapps.barcodescanner.BarcodeEncoder;
 
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -38,7 +43,7 @@ public class ViewPoints extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private TextView name;
     private TextView welcomeText;
-
+    private ImageView image;
     String newUid;
     User userClient;
 
@@ -75,7 +80,19 @@ public class ViewPoints extends AppCompatActivity {
                 Log.v("E_VALUE", "Data: " + dataSnapshot.getValue());
                 userClient=dataSnapshot.getValue(User.class);
                 name.setText("Welcome " + userClient.getName() + " to Olive Ave");
-                welcomeText.setText("You have : " + userClient.getPhoneNumber()+ " points!");
+                welcomeText.setText("You have : " + userClient.getPoints()+ " points!");
+                //Setting up QR Code
+
+                image = (ImageView) findViewById(R.id.image);
+                MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
+                try {
+                    BitMatrix bitMatrix = multiFormatWriter.encode(userClient.getId(), BarcodeFormat.QR_CODE, 200, 200);
+                    BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
+                    Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
+                    image.setImageBitmap(bitmap);
+                } catch (WriterException e) {
+                    e.printStackTrace();
+                }
 
 
             }

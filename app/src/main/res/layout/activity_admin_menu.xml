@@ -44,7 +44,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/userEmail"
         android:textSize="30dp"
-        android:hint="Enter email"
+        android:text="3jxi6EF9HUWFDYkd07lUj1DqikR2"
         android:inputType="textEmailAddress"
         android:imeOptions="actionDone"
         android:textAlignment="center"
@@ -52,17 +52,6 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginBottom="86dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/activeAdmin"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
