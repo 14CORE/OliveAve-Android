@@ -44,6 +44,7 @@ public class ViewPoints extends AppCompatActivity {
     private TextView name;
     private TextView welcomeText;
     private ImageView image;
+
     String newUid;
     User userClient;
 
@@ -59,11 +60,15 @@ public class ViewPoints extends AppCompatActivity {
             newUid= extras.getString("uid");
         }
 
+
+
+
         //Creates a reference for  your Firebase database
         //Add YOUR Firebase Reference URL instead of the following URL
         //myFirebaseRef = new Firebase("https://androidbashfirebaseupdat-bd094.firebaseio.com/users/");
         myFirebaseRef = FirebaseDatabase.getInstance().getReferenceFromUrl("https://oliveavecs246.firebaseio.com/Users/" + newUid);
         mAuth = FirebaseAuth.getInstance();
+
     }
 
     @Override
