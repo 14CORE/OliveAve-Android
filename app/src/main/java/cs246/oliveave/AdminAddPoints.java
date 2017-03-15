@@ -40,9 +40,9 @@ public class AdminAddPoints extends AppCompatActivity {
         setContentView(R.layout.activity_admin_add_points);
         Bundle extras = getIntent().getExtras();
         redeemBtn = (Button)findViewById(R.id.redeemBtn);
-        redeemBtn.setClickable(false);
+
         addBtn = (Button) findViewById(R.id.addPointsBtn);
-        addBtn.setClickable(true);
+
         _userName = (TextView)findViewById(R.id.userName);
         _userPoints = (TextView)findViewById(R.id.userPoints);
 
@@ -65,6 +65,15 @@ public class AdminAddPoints extends AppCompatActivity {
                 _userName.setText(customer.getName());
                 _userPoints.setText(customer.getPoints()+" points");
                 mPoints = customer.getPoints();
+                points = Integer.parseInt(customer.getPoints());
+                if(points==10){
+
+                    redeemBtn.setClickable(true);
+                    addBtn.setClickable(false);
+                }else if(points<10){
+                    redeemBtn.setClickable(false);
+                    addBtn.setClickable(true);
+                }
             }
 
             @Override
@@ -77,25 +86,25 @@ public class AdminAddPoints extends AppCompatActivity {
     }
 
     public void addPoints(View view){
-        points = Integer.parseInt(customer.getPoints());
+
+        //points = Integer.parseInt(customer.getPoints());
+        if(points==10) {
+            Toast.makeText(this,"15% off next purchase", Toast.LENGTH_LONG).show();
+        }
         points++;
         mPoints = String.valueOf(points);
         _databaseRef.child("points").setValue(mPoints);
 
-        if(points==10){
-            Toast.makeText(this,"15% off in next purchase", Toast.LENGTH_LONG).show();
-            redeemBtn.setClickable(true);
-            addBtn.setClickable(false);
-        }
     }
 
     public void redeemPoints(View view){
 
         _databaseRef.child("points").setValue("0");
-        addBtn.setClickable(true);
-    }
+
+}
 
     public void cancelTransaction(View view){
+        finish();
 
     }
 }
