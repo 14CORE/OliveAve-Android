@@ -38,7 +38,6 @@ import java.net.URL;
 
 public class ViewPoints extends AppCompatActivity {
 
-    private static final String TAG = "AndroidBash";
     private DatabaseReference myFirebaseRef;
     private FirebaseAuth mAuth;
     private TextView name;
@@ -65,7 +64,6 @@ public class ViewPoints extends AppCompatActivity {
 
         //Creates a reference for  your Firebase database
         //Add YOUR Firebase Reference URL instead of the following URL
-        //myFirebaseRef = new Firebase("https://androidbashfirebaseupdat-bd094.firebaseio.com/users/");
         myFirebaseRef = FirebaseDatabase.getInstance().getReferenceFromUrl("https://oliveavecs246.firebaseio.com/Users/" + newUid);
         mAuth = FirebaseAuth.getInstance();
 
@@ -121,29 +119,6 @@ public class ViewPoints extends AppCompatActivity {
 
             }
         });
-
-
-        //A firebase reference to the welcomeText can be created in following ways :
-        // You can use this :
-        //Firebase myAnotherFirebaseRefForWelcomeText=new Firebase("https://androidbashfirebaseupdat-bd094.firebaseio.com/welcomeText");*/
-        //OR as shown below
-        /*myFirebaseRef.child("welcomeText").addValueEventListener(new ValueEventListener() {
-            //onDataChange is called every time the data changes in your Firebase Database
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                //Inside onDataChange we can get the data as an Object from the dataSnapshot
-                //getValue returns an Object. We can specify the type by passing the type expected as a parameter
-                String data = dataSnapshot.getValue(String.class);
-                welcomeText.setText(data);
-            }
-
-            //onCancelled is called in case of any error
-            @Override
-            public void onCancelled(FirebaseError firebaseError) {
-                Toast.makeText(getApplicationContext(), "" + firebaseError.getMessage(), Toast.LENGTH_LONG).show();
-            }
-        });*/
-
     }
 
     @Override

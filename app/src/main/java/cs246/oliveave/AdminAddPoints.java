@@ -6,8 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -29,13 +31,18 @@ public class AdminAddPoints extends AppCompatActivity {
     User customer;
     int points;
     String mPoints;
+    Button redeemBtn;
+    Button addBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_add_points);
         Bundle extras = getIntent().getExtras();
-
+        redeemBtn = (Button)findViewById(R.id.redeemBtn);
+        redeemBtn.setClickable(false);
+        addBtn = (Button) findViewById(R.id.addPointsBtn);
+        addBtn.setClickable(true);
         _userName = (TextView)findViewById(R.id.userName);
         _userPoints = (TextView)findViewById(R.id.userPoints);
 
@@ -74,10 +81,18 @@ public class AdminAddPoints extends AppCompatActivity {
         points++;
         mPoints = String.valueOf(points);
         _databaseRef.child("points").setValue(mPoints);
+
+        if(points==10){
+            Toast.makeText(this,"15% off in next purchase", Toast.LENGTH_LONG).show();
+            redeemBtn.setClickable(true);
+            addBtn.setClickable(false);
+        }
     }
 
     public void redeemPoints(View view){
+
         _databaseRef.child("points").setValue("0");
+        addBtn.setClickable(true);
     }
 
     public void cancelTransaction(View view){

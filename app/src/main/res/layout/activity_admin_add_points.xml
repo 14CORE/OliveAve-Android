@@ -12,11 +12,13 @@
 
     <Button
         android:text="REDEEM"
+        android:enabled="false"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/redeemBtn"
         android:background="@color/colorPrimary"
         android:textColor="@color/white"
+
         android:onClick="redeemPoints"
         android:layout_marginBottom="19dp"
         android:layout_above="@+id/cancelPointsBtn"
