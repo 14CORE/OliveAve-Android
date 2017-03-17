@@ -63,6 +63,17 @@
         android:layout_alignParentEnd="true" />
 
     <Button
+        android:id="@+id/sign_out"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/red"
+        android:text="SIGN OUT"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:onClick="signOut"/>
+
+    <Button
         android:text="New User? PLEASE SIGN UP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

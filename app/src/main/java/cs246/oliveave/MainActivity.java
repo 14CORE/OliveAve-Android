@@ -30,8 +30,8 @@ public class MainActivity extends AppCompatActivity {
     private ProgressDialog progressDialog;
     private FirebaseAuth mAuth;
     //private DatabaseReference myFirebaseRef = FirebaseDatabase.getInstance().getReferenceFromUrl("https://oliveavecs246.firebaseio.com/");
-    User user;
-    FirebaseUser mFirebaseUser;
+    //User user;
+    //FirebaseUser mFirebaseUser;
     //private FirebaseAuth.AuthStateListener mAuthListener;
     String uidToNextAct;
 
@@ -49,19 +49,22 @@ public class MainActivity extends AppCompatActivity {
         mEmail = (EditText) findViewById(R.id.edit_text_email_id);
         mPassword = (EditText) findViewById(R.id.edit_text_password);
 
-        mFirebaseUser = mAuth.getCurrentUser();
+        //mFirebaseUser = mAuth.getCurrentUser();
 
+        if(mAuth.getCurrentUser()!=null){
+            Toast.makeText(MainActivity.this, "Current User", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void login(){
         String email = mEmail.getText().toString();
         String password = mPassword.getText().toString();
 
-        uidToNextAct = mAuth.getCurrentUser().getUid();
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()) {
+                    uidToNextAct = mAuth.getCurrentUser().getUid();
                     Intent i = new Intent(MainActivity.this, ViewPoints.class);
                     i.putExtra("uid", uidToNextAct);
                     startActivity(i);
@@ -88,6 +91,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(i);
 
 
+    }
+
+    public void signOut(View view){
+        mAuth.signOut();
     }
 
 
