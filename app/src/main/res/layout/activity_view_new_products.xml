@@ -6,4 +6,11 @@
     android:layout_height="match_parent"
     tools:context="cs246.oliveave.ViewNewProducts">
 
+    <WebView
+        android:id="@+id/website"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteY="2dp"
+        tools:layout_editor_absoluteX="2dp"></WebView>
+
 </android.support.constraint.ConstraintLayout>
