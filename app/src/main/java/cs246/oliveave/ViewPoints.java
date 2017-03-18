@@ -82,7 +82,7 @@ public class ViewPoints extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Log.v("E_VALUE", "Data: " + dataSnapshot.getValue());
                 userClient=dataSnapshot.getValue(User.class);
-                name.setText("Welcome " + userClient.getName() + " to Olive Ave");
+                name.setText(userClient.getName());
                 welcomeText.setText("You have : " + userClient.getPoints()+ " points!");
                 //Setting up QR Code
 

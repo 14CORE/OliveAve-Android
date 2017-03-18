@@ -73,8 +73,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
-
     }
 
     public void signIn(View view){
@@ -89,14 +87,21 @@ public class MainActivity extends AppCompatActivity {
     public void adminBtn(View view) {
         Intent i = new Intent(this, AdminSignIn.class);
         startActivity(i);
-
-
     }
 
     public void signOut(View view){
         mAuth.signOut();
     }
 
-
+    public void resetPassword(View view){
+        String email = mEmail.getText().toString();
+        if(email.compareTo("") == 0){
+            Toast.makeText(MainActivity.this, "Enter email", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            mAuth.sendPasswordResetEmail(email);
+            Toast.makeText(MainActivity.this, "Password reset email sent", Toast.LENGTH_SHORT).show();
+        }
+    }
 }
 

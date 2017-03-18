@@ -18,11 +18,11 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import static com.google.android.gms.common.internal.safeparcel.SafeParcelable.NULL;
+
 
 public class SignUpActivity extends AppCompatActivity {
     private static final String TAG = "AndroidBash";
-    //Add YOUR Firebase Reference URL instead of the following URL
-    //private Firebase mRef = new Firebase("https://androidbashfirebaseupdat-bd094.firebaseio.com/");
     private DatabaseReference mRef = FirebaseDatabase.getInstance().getReferenceFromUrl("https://oliveavecs246.firebaseio.com/");
 
     private User user;
@@ -32,6 +32,7 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText password;
     private FirebaseAuth mAuth;
     private ProgressDialog mProgressDialog;
+    private EditText reenterPassword;
 
     String uidToNextAct;
 
@@ -39,9 +40,6 @@ public class SignUpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sing_up);
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
-
         mAuth = FirebaseAuth.getInstance();
 
 
@@ -54,7 +52,7 @@ public class SignUpActivity extends AppCompatActivity {
         phoneNumber = (EditText) findViewById(R.id.edit_text_phone_number);
         email = (EditText) findViewById(R.id.edit_text_new_email);
         password = (EditText) findViewById(R.id.edit_text_new_password);
-
+        reenterPassword = (EditText) findViewById(R.id.edit_text_reenter_password);
     }
 
     @Override
@@ -72,12 +70,20 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     public void onSignUpClicked(View view) {
-        createNewAccount(email.getText().toString(), password.getText().toString());
-        showProgressDialog();
+        String password1 = password.getText().toString();
+        String password2 = reenterPassword.getText().toString();
+        if(password1.compareTo(password2)!=0) {
+            Toast.makeText(SignUpActivity.this, "Password doesn't match!",Toast.LENGTH_SHORT).show();
+        }else if(password2.compareTo(NULL)==0) {
+            Toast.makeText(SignUpActivity.this, "Please reenter password!",Toast.LENGTH_SHORT).show();
+        }else {
+            createNewAccount(email.getText().toString(), password.getText().toString());
+            showProgressDialog();
+        }
     }
 
 
-    private void createNewAccount(String email, String password) {
+    private void createNewAccount(String email, final String password) {
         Log.d(TAG, "createNewAccount:" + email);
         if (!validateForm()) {
             return;
@@ -93,6 +99,7 @@ public class SignUpActivity extends AppCompatActivity {
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+                        //adminUsername.getText().toString()
 
                         Log.d(TAG, "createUserWithEmail:onComplete:" + task.isSuccessful());
                         hideProgressDialog();
