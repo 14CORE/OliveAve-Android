@@ -1,29 +1,21 @@
 package cs246.oliveave;
 
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
+import com.github.lzyzsd.circleprogress.DonutProgress;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
@@ -41,8 +33,8 @@ public class ViewPoints extends AppCompatActivity {
     private DatabaseReference myFirebaseRef;
     private FirebaseAuth mAuth;
     private TextView name;
-    private TextView welcomeText;
     private ImageView image;
+    private DonutProgress donutProgress;
 
     String newUid;
     User userClient;
@@ -59,22 +51,18 @@ public class ViewPoints extends AppCompatActivity {
             newUid= extras.getString("uid");
         }
 
-
-
-
         //Creates a reference for  your Firebase database
         //Add YOUR Firebase Reference URL instead of the following URL
-        myFirebaseRef = FirebaseDatabase.getInstance().getReferenceFromUrl("https://oliveavecs246.firebaseio.com/Users/" + newUid);
+        myFirebaseRef = FirebaseDatabase.getInstance().
+                getReferenceFromUrl("https://oliveavecs246.firebaseio.com/Users/"+ newUid);
         mAuth = FirebaseAuth.getInstance();
-
+        donutProgress = (DonutProgress) findViewById(R.id.progressDonut);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
         name = (TextView) findViewById(R.id.text_view_name);
-        welcomeText = (TextView) findViewById(R.id.text_view_welcome);
-
 
         //Referring to the name of the User who has logged in currently and adding a valueChangeListener
         myFirebaseRef.addValueEventListener(new ValueEventListener() {
@@ -82,10 +70,11 @@ public class ViewPoints extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Log.v("E_VALUE", "Data: " + dataSnapshot.getValue());
                 userClient=dataSnapshot.getValue(User.class);
-                name.setText(userClient.getName());
-                welcomeText.setText("You have : " + userClient.getPoints()+ " points!");
-                //Setting up QR Code
+                name.setText("Hello " + userClient.getName() +
+                        ", you have:");
+                donutProgress.setProgress(Integer.parseInt(userClient.getPoints()));
 
+                //Setting up QR Code
                 image = (ImageView) findViewById(R.id.image);
                 MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
                 try {
@@ -96,22 +85,6 @@ public class ViewPoints extends AppCompatActivity {
                 } catch (WriterException e) {
                     e.printStackTrace();
                 }
-
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                //Toast.makeText(getApplicationContext(), "" + DatabaseError., Toast.LENGTH_LONG).show();
-            }
-        });
-
-
-        myFirebaseRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-
             }
 
             @Override
@@ -119,14 +92,13 @@ public class ViewPoints extends AppCompatActivity {
 
             }
         });
+
     }
 
     @Override
     public void onStop() {
         super.onStop();
-
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -148,7 +120,6 @@ public class ViewPoints extends AppCompatActivity {
 */
         return super.onOptionsItemSelected(item);
     }
-
 
     public class ImageLoadTask extends AsyncTask<Void, Void, Bitmap> {
 

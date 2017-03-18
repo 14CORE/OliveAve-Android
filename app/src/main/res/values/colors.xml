@@ -64,7 +64,7 @@
     <color name="SandyBrown">#F4A460</color>
     <color name="Azure">#F0FFFF</color>
     <color name="Honeydew">#F0FFF0</color>
-    <color name="AliceBlue">#F0F8FF</color>
+    <color name="AliceBlue">#f0f8ff</color>
     <color name="Khaki">#F0E68C</color>
     <color name="LightCoral">#F08080</color>
     <color name="PaleGoldenrod">#EEE8AA</color>
@@ -106,7 +106,7 @@
     <color name="DarkViolet">#9400D3</color>
     <color name="MediumPurple">#9370DB</color>
     <color name="LightGreen">#90EE90</color>
-    <color name="DarkSeaGreen">#8FBC8F</color>
+    <color name="DarkSeaGreen">#8fbc8f</color>
     <color name="SaddleBrown">#8B4513</color>
     <color name="DarkMagenta">#8B008B</color>
     <color name="DarkRed">#8B0000</color>
