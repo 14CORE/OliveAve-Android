@@ -9,7 +9,6 @@ public class ViewNewProducts extends AppCompatActivity {
 
     private WebView webView;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
