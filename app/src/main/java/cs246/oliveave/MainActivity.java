@@ -43,8 +43,6 @@ public class MainActivity extends AppCompatActivity {
         mEmail = (EditText) findViewById(R.id.edit_text_email_id);
         mPassword = (EditText) findViewById(R.id.edit_text_password);
 
-        //mFirebaseUser = mAuth.getCurrentUser();
-
         if(mAuth.getCurrentUser()!=null){
             Toast.makeText(MainActivity.this, "Current User", Toast.LENGTH_SHORT).show();
         }
