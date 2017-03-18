@@ -22,7 +22,6 @@
         </activity>
         <activity android:name=".ViewPoints" />
         <activity android:name=".AdminMenu" />
-        <activity android:name=".ProfileActivity" />
         <activity android:name=".AdminAddPoints" />
         <activity android:name=".AdminSignIn" />
         <activity android:name=".SignUpActivity"/>
