@@ -125,7 +125,7 @@ public class SignUpActivity extends AppCompatActivity {
         saveNewUser(mUser.getUid(), user.getName(), user.getPhoneNumber(), user.getEmail(), user.getPassword());
         signOut();
         // Go to LoginActivity
-        Intent sendUid = new Intent(SignUpActivity.this, ViewPoints.class);
+        Intent sendUid = new Intent(SignUpActivity.this, MenuActivity.class);
         sendUid.putExtra("uid", uidToNextAct);
         startActivity(sendUid);
         finish();

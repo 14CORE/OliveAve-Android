@@ -95,48 +95,4 @@ public class AdminMenu extends AppCompatActivity implements View.OnClickListener
         //initiating the qr code scan
         qrScan.initiateScan();
     }
-
-
-    /*EditText emailToSearch;
-    String userUid;
-
-    //private ZXingScannerView scannerView;
-    IntentIntegrator integrator = new IntentIntegrator(this);
-    String uidToNextAct;
-
-
-
-
-    protected void onCreate(Bundle savedInstanceState){
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_menu);
-        emailToSearch = (EditText)findViewById(R.id.userEmail);
-        userUid = emailToSearch.getText().toString();
-        IntentIntegrator integrator = new IntentIntegrator(this);
-        integrator.setOrientationLocked(false);
-        integrator.initiateScan();
-
-    }
-
-
-
-
-    DatabaseReference _database;
-    @Override
-    protected void onCreate(Bundle savedInstanceState){
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_menu);
-        emailToSearch = (EditText)findViewById(R.id.userEmail);
-        userUid = emailToSearch.getText().toString();
-    }
-
-    public void continueToAdminOptions(View view){
-        Intent i = new Intent(this, AdminAddPoints.class);
-        i.putExtra("UserUid", userUid);
-        startActivity(i);
-    }
-
-    public void clearUserInput(View view){
-        emailToSearch.setText("");
-    }*/
 }

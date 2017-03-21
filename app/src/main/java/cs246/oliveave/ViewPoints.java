@@ -70,8 +70,7 @@ public class ViewPoints extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Log.v("E_VALUE", "Data: " + dataSnapshot.getValue());
                 userClient=dataSnapshot.getValue(User.class);
-                name.setText("Hello " + userClient.getName() +
-                        ", you have:");
+                name.setText("Rewards");
                 donutProgress.setProgress(Integer.parseInt(userClient.getPoints()));
 
                 //Setting up QR Code
