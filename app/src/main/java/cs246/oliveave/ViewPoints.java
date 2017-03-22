@@ -36,6 +36,7 @@ public class ViewPoints extends AppCompatActivity {
     private ImageView image;
     private DonutProgress donutProgress;
 
+
     String newUid;
     User userClient;
 
@@ -45,6 +46,7 @@ public class ViewPoints extends AppCompatActivity {
         setContentView(R.layout.activity_view_points);
         Bundle extras = getIntent().getExtras();
         userClient = new User();
+
         if(extras == null) {
             newUid= null;
         } else {

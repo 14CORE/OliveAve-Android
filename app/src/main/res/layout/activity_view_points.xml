@@ -54,7 +54,6 @@
         app:donut_max="10"
         app:donut_progress="7"
         app:donut_suffix_text="/10 Points"
-        app:donut_text_color="@android:color/white"
         app:layout_constraintBottom_toTopOf="@+id/image"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
