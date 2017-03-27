@@ -2,6 +2,7 @@ package cs246.oliveave;
 
 import android.content.Intent;
 import android.provider.Settings;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,6 +27,7 @@ public class AdminAddPoints extends AppCompatActivity {
     String userKey;
     private  DatabaseReference _databaseRef;
     private FirebaseAuth _authDb;
+    private FirebaseUser _newUser;
     TextView _userName;
     TextView _userPoints;
     User customer;
@@ -33,7 +35,7 @@ public class AdminAddPoints extends AppCompatActivity {
     String mPoints;
     Button redeemBtn;
     Button addBtn;
-
+    String TAG;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,13 +53,45 @@ public class AdminAddPoints extends AppCompatActivity {
         }else{
             userKey = extras.getString("UserUid");
         }
-        _databaseRef = FirebaseDatabase.getInstance().getReferenceFromUrl("https://oliveavecs246.firebaseio.com/Users/" + userKey);
-        _authDb = FirebaseAuth.getInstance();
+
+        try{
+            _databaseRef = FirebaseDatabase.getInstance().getReferenceFromUrl("https://oliveavecs246.firebaseio.com/Users/"+userKey);
+            _authDb = FirebaseAuth.getInstance();
+        }catch(Exception e){
+            e.getMessage();
+            Toast.makeText(this, "USER DOESN'T EXIST",Toast.LENGTH_LONG).show();
+            finish();
+        }
+
+        //if(_databaseRef.getKey().isEmpty())
     }
 
     @Override
     protected void onStart(){
         super.onStart();
+
+        _databaseRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                for (DataSnapshot child : snapshot.getChildren()) {
+                    if (snapshot.hasChild(userKey)) {
+                        // run some code
+                        Log.d(TAG, "FOUNDDDDDDDDDDDDDDDDDDDDDDDD");
+
+                    }else {
+                        Log.d(TAG, "NOTTTTTTTT");
+                        finish();
+                    }
+                }
+
+            }
+            @Override
+            public void onCancelled(DatabaseError firebaseError) {
+            }
+        });
+
+
+
         _databaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -106,5 +140,15 @@ public class AdminAddPoints extends AppCompatActivity {
     public void cancelTransaction(View view){
         finish();
 
+    }
+
+    public void userExist(){
+        //_authDb = FirebaseAuth.getInstance();
+        //Toast.makeText(this,"Add points to user",Toast.LENGTH_SHORT).show();
+    }
+
+    public void userDoesntExist(){
+        //Toast.makeText(this,"User doesnt't exist", Toast.LENGTH_LONG).show();
+        finish();
     }
 }
