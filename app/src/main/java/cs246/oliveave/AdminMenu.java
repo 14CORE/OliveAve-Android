@@ -94,10 +94,10 @@ public class AdminMenu extends AppCompatActivity implements View.OnClickListener
     @Override
     public void onClick(View view) {
         //initiating the qr code scan
-        //qrScan.initiateScan();
-        uidToNextAct = "kamdsjasndfanisfnauiosfn";
+        qrScan.initiateScan();
+        /*uidToNextAct = "kamdsjasndfanisfnauiosfn";
         Intent sendUid = new Intent(AdminMenu.this, AdminAddPoints.class);
         sendUid.putExtra("UserUid", uidToNextAct);
-        startActivity(sendUid);
+        startActivity(sendUid);*/
     }
 }
