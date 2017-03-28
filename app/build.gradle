@@ -26,10 +26,11 @@ dependencies {
     })
     // This is the firebase-authentication
     // THis is the firebase database
-    
+
 
     compile 'com.android.support:appcompat-v7:25.1.1'
     compile 'com.android.support:appcompat-v7:25.1.1'
+    compile 'com.google.android.gms:play-services-maps:10.2.0'
     compile 'com.google.firebase:firebase-auth:10.2.0'
     compile 'com.google.firebase:firebase-database:10.2.0'
     compile 'com.android.support:design:25.1.1'

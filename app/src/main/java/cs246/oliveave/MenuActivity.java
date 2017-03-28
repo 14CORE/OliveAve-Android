@@ -86,7 +86,7 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     public void findStore(View view) {
-        Intent intent = new Intent(MenuActivity.this, ViewNewProducts.class);
+        Intent intent = new Intent(MenuActivity.this, MapsActivity.class);
         startActivity(intent);
     }
 
