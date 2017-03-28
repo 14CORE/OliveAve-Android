@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -76,6 +77,13 @@ public class MenuActivity extends AppCompatActivity {
 
     }
 
+    public void signOut(View view){
+        Toast.makeText(this, "BYE BYE", Toast.LENGTH_SHORT).show();
+        mAuth.signOut();
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
     public void newProducts(View view) {
         Intent intent = new Intent(MenuActivity.this, ViewNewProducts.class);
         startActivity(intent);
@@ -91,7 +99,6 @@ public class MenuActivity extends AppCompatActivity {
         Intent intent = new Intent(MenuActivity.this, MapsActivity.class);
         startActivity(intent);
     }
-
 
     public void adminBtn(View view) {
         Intent i = new Intent(this, AdminSignIn.class);
