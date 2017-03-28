@@ -4,24 +4,22 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 public class MenuActivity extends AppCompatActivity {
 
     String uidToNextAct;
     User userClient;
     String newUid;
-    Button admin;
+    ImageView admin;
     TextView user_name;
+    TextView adminText;
     private DatabaseReference myFirebaseRef;
     private FirebaseAuth mAuth;
 
@@ -34,8 +32,8 @@ public class MenuActivity extends AppCompatActivity {
 
 
         userClient = new User();
-        admin = (Button) findViewById(R.id.adminBtn);
-
+        admin = (ImageView) findViewById(R.id.adminBtn);
+        adminText = (TextView) findViewById(R.id.text_adminBtn);
 
         if(extras == null) {
             newUid = null;
@@ -45,9 +43,11 @@ public class MenuActivity extends AppCompatActivity {
 
         if(newUid.equals("lv6hWWp6mibWOeZZfZpMFh97jrq2")){
            admin.setVisibility(View.VISIBLE);
+           adminText.setVisibility(View.VISIBLE);
         }
         else{
             admin.setVisibility(View.INVISIBLE);
+            adminText.setVisibility(View.INVISIBLE);
         }
 
         myFirebaseRef = FirebaseDatabase.getInstance().getReferenceFromUrl("https://oliveavecs246.firebaseio.com/Users/"+ newUid);
@@ -57,7 +57,7 @@ public class MenuActivity extends AppCompatActivity {
 
     @Override
     protected void onStart() {
-        super.onStart();
+        super.onStart();/*
         user_name = (TextView) findViewById(R.id.user_name);
         //Referring to the name of the User who has logged in currently and adding a valueChangeListener
         myFirebaseRef.addValueEventListener(new ValueEventListener() {
@@ -74,7 +74,7 @@ public class MenuActivity extends AppCompatActivity {
 
             }
         });
-
+        */
     }
 
     public void signOut(View view){
