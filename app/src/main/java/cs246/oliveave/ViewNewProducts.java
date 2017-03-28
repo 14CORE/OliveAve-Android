@@ -29,6 +29,7 @@ public class ViewNewProducts extends AppCompatActivity {
 
     }
 
+    // This class will load the progress bar
     public class ViewNewProductsClient extends WebViewClient {
         @Override
         public void onPageStarted(WebView view, String url, Bitmap favicon) {
