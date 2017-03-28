@@ -63,7 +63,9 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 userClient=dataSnapshot.getValue(User.class);
-                user_name.setText(userClient.getName().toUpperCase());
+                // To say hello and UpperCase the first letter of the name only
+                user_name.setText("Hello, " + userClient.getName().substring(0,1).toUpperCase() +
+                        userClient.getName().substring(1));
             }
 
             @Override
