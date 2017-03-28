@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -63,7 +64,9 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 userClient=dataSnapshot.getValue(User.class);
-                user_name.setText(userClient.getName().toUpperCase());
+                // To say hello and UpperCase the first letter of the name only
+                user_name.setText("Hello, " + userClient.getName().substring(0,1).toUpperCase() +
+                        userClient.getName().substring(1));
             }
 
             @Override
@@ -72,6 +75,13 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void signOut(View view){
+        Toast.makeText(this, "BYE BYE", Toast.LENGTH_SHORT).show();
+        mAuth.signOut();
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 
     public void newProducts(View view) {
@@ -89,7 +99,6 @@ public class MenuActivity extends AppCompatActivity {
         Intent intent = new Intent(MenuActivity.this, MapsActivity.class);
         startActivity(intent);
     }
-
 
     public void adminBtn(View view) {
         Intent i = new Intent(this, AdminSignIn.class);
