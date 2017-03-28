@@ -42,7 +42,7 @@ public class MenuActivity extends AppCompatActivity {
             newUid = extras.getString("uid");
         }
 
-        if(newUid.equals("lpHSI7WLAWTngyRwwpUN2fqbwKI2")){
+        if(newUid.equals("lv6hWWp6mibWOeZZfZpMFh97jrq2")){
            admin.setVisibility(View.VISIBLE);
         }
         else{
