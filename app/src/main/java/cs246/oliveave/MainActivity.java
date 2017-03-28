@@ -2,28 +2,31 @@ package cs246.oliveave;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button buttonRegister;
-    private Button buttonSignIn;
     private EditText mEmail;
     private EditText mPassword;
     private ProgressDialog progressDialog;
     private FirebaseAuth mAuth;
+    private TextView signUp;
     //private DatabaseReference myFirebaseRef = FirebaseDatabase.getInstance().getReferenceFromUrl("https://oliveavecs246.firebaseio.com/");
     //User user;
     //FirebaseUser mFirebaseUser;
@@ -36,17 +39,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         mAuth = FirebaseAuth.getInstance();
         progressDialog = new ProgressDialog(this);
-        buttonRegister = (Button) findViewById(R.id.buttonSignUp);
-        buttonSignIn = (Button) findViewById(R.id.button_user_log_in);
         mEmail = (EditText) findViewById(R.id.edit_text_email_id);
         mPassword = (EditText) findViewById(R.id.edit_text_password);
+        signUp = (TextView) findViewById(R.id.signUp);
 
-        if(mAuth.getCurrentUser()!=null){
-            Toast.makeText(MainActivity.this, "Current User", Toast.LENGTH_SHORT).show();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            uidToNextAct = mAuth.getCurrentUser().getUid();
+            Intent i = new Intent(MainActivity.this, MenuActivity.class);
+            i.putExtra("uid", uidToNextAct);
+            startActivity(i);
         }
+
+        Spannable colorSpan = new SpannableString("Don't have an account? Sign Up");
+        colorSpan.setSpan(new ForegroundColorSpan(Color.BLUE), 22, 30, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        signUp.setText(colorSpan);
     }
 
     public void login(){
@@ -84,13 +93,6 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
         login();
-    }
-
-
-    public void signOut(View view){
-
-        Toast.makeText(MainActivity.this, "BYE BYE", Toast.LENGTH_SHORT).show();
-        mAuth.signOut();
     }
 
     public void resetPassword(View view){

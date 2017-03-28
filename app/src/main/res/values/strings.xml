@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">OliveAve</string>
     <string name="loading">Loading</string>
-
+    <string name="signUp">Don\'t have an account? <font fgcolor="red">Sign up</font></string>
 </resources>
