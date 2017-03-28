@@ -50,6 +50,7 @@ public class AdminAddPoints extends AppCompatActivity {
 
         if(extras == null){
             userKey = null;
+            finish();
         }else{
             userKey = extras.getString("UserUid");
         }
@@ -60,68 +61,50 @@ public class AdminAddPoints extends AppCompatActivity {
         }catch(Exception e){
             e.getMessage();
             Toast.makeText(this, "USER DOESN'T EXIST",Toast.LENGTH_LONG).show();
+            Intent i = new Intent(this, AdminMenu.class);
+            startActivity(i);
             finish();
         }
-
-        //if(_databaseRef.getKey().isEmpty())
     }
 
     @Override
     protected void onStart(){
         super.onStart();
 
-        _databaseRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot snapshot) {
-                for (DataSnapshot child : snapshot.getChildren()) {
-                    if (snapshot.hasChild(userKey)) {
-                        // run some code
-                        Log.d(TAG, "FOUNDDDDDDDDDDDDDDDDDDDDDDDD");
 
-                    }else {
-                        Log.d(TAG, "NOTTTTTTTT");
-                        finish();
+            _databaseRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    try {
+                        customer = dataSnapshot.getValue(User.class);
+                        _userName.setText(customer.getName());
+                        _userPoints.setText(customer.getPoints() + " points");
+                        mPoints = customer.getPoints();
+                        points = Integer.parseInt(customer.getPoints());
+                    }catch (Exception e){
+                        e.getMessage();
+                        userDoesntExist();
+                    }
+
+                    if (points == 10) {
+                        redeemBtn.setClickable(true);
+                        addBtn.setClickable(false);
+                    } else if (points < 10) {
+                        redeemBtn.setClickable(false);
+                        addBtn.setClickable(true);
                     }
                 }
 
-            }
-            @Override
-            public void onCancelled(DatabaseError firebaseError) {
-            }
-        });
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
 
-
-
-        _databaseRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                customer = dataSnapshot.getValue(User.class);
-                _userName.setText(customer.getName());
-                _userPoints.setText(customer.getPoints()+" points");
-                mPoints = customer.getPoints();
-                points = Integer.parseInt(customer.getPoints());
-                if(points==10){
-
-                    redeemBtn.setClickable(true);
-                    addBtn.setClickable(false);
-                }else if(points<10){
-                    redeemBtn.setClickable(false);
-                    addBtn.setClickable(true);
                 }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
+            });
 
 
-        });
     }
 
     public void addPoints(View view){
-
-        //points = Integer.parseInt(customer.getPoints());
         if(points==10) {
             Toast.makeText(this,"15% off next purchase", Toast.LENGTH_LONG).show();
         }
@@ -148,7 +131,7 @@ public class AdminAddPoints extends AppCompatActivity {
     }
 
     public void userDoesntExist(){
-        //Toast.makeText(this,"User doesnt't exist", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "USER DOESN'T EXIST",Toast.LENGTH_LONG).show();
         finish();
     }
 }
