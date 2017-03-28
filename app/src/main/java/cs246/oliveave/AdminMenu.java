@@ -60,6 +60,7 @@ public class AdminMenu extends AppCompatActivity implements View.OnClickListener
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+
         if (result != null) {
             //if qrcode has nothing in it
             if (result.getContents() == null) {
@@ -93,50 +94,10 @@ public class AdminMenu extends AppCompatActivity implements View.OnClickListener
     @Override
     public void onClick(View view) {
         //initiating the qr code scan
-        qrScan.initiateScan();
+        //qrScan.initiateScan();
+        uidToNextAct = "kamdsjasndfanisfnauiosfn";
+        Intent sendUid = new Intent(AdminMenu.this, AdminAddPoints.class);
+        sendUid.putExtra("UserUid", uidToNextAct);
+        startActivity(sendUid);
     }
-
-
-    /*EditText emailToSearch;
-    String userUid;
-
-    //private ZXingScannerView scannerView;
-    IntentIntegrator integrator = new IntentIntegrator(this);
-    String uidToNextAct;
-
-
-
-
-    protected void onCreate(Bundle savedInstanceState){
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_menu);
-        emailToSearch = (EditText)findViewById(R.id.userEmail);
-        userUid = emailToSearch.getText().toString();
-        IntentIntegrator integrator = new IntentIntegrator(this);
-        integrator.setOrientationLocked(false);
-        integrator.initiateScan();
-
-    }
-
-
-
-
-    DatabaseReference _database;
-    @Override
-    protected void onCreate(Bundle savedInstanceState){
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_menu);
-        emailToSearch = (EditText)findViewById(R.id.userEmail);
-        userUid = emailToSearch.getText().toString();
-    }
-
-    public void continueToAdminOptions(View view){
-        Intent i = new Intent(this, AdminAddPoints.class);
-        i.putExtra("UserUid", userUid);
-        startActivity(i);
-    }
-
-    public void clearUserInput(View view){
-        emailToSearch.setText("");
-    }*/
 }

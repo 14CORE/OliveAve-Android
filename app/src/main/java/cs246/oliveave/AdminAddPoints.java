@@ -2,6 +2,7 @@ package cs246.oliveave;
 
 import android.content.Intent;
 import android.provider.Settings;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,6 +27,7 @@ public class AdminAddPoints extends AppCompatActivity {
     String userKey;
     private  DatabaseReference _databaseRef;
     private FirebaseAuth _authDb;
+    private FirebaseUser _newUser;
     TextView _userName;
     TextView _userPoints;
     User customer;
@@ -33,7 +35,7 @@ public class AdminAddPoints extends AppCompatActivity {
     String mPoints;
     Button redeemBtn;
     Button addBtn;
-
+    String TAG;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,46 +50,61 @@ public class AdminAddPoints extends AppCompatActivity {
 
         if(extras == null){
             userKey = null;
+            finish();
         }else{
             userKey = extras.getString("UserUid");
         }
-        _databaseRef = FirebaseDatabase.getInstance().getReferenceFromUrl("https://oliveavecs246.firebaseio.com/Users/" + userKey);
-        _authDb = FirebaseAuth.getInstance();
+
+        try{
+            _databaseRef = FirebaseDatabase.getInstance().getReferenceFromUrl("https://oliveavecs246.firebaseio.com/Users/"+userKey);
+            _authDb = FirebaseAuth.getInstance();
+        }catch(Exception e){
+            e.getMessage();
+            Toast.makeText(this, "USER DOESN'T EXIST",Toast.LENGTH_LONG).show();
+            Intent i = new Intent(this, AdminMenu.class);
+            startActivity(i);
+            finish();
+        }
     }
 
     @Override
     protected void onStart(){
         super.onStart();
-        _databaseRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                customer = dataSnapshot.getValue(User.class);
-                _userName.setText(customer.getName());
-                _userPoints.setText(customer.getPoints()+" points");
-                mPoints = customer.getPoints();
-                points = Integer.parseInt(customer.getPoints());
-                if(points==10){
 
-                    redeemBtn.setClickable(true);
-                    addBtn.setClickable(false);
-                }else if(points<10){
-                    redeemBtn.setClickable(false);
-                    addBtn.setClickable(true);
+
+            _databaseRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    try {
+                        customer = dataSnapshot.getValue(User.class);
+                        _userName.setText(customer.getName());
+                        _userPoints.setText(customer.getPoints() + " points");
+                        mPoints = customer.getPoints();
+                        points = Integer.parseInt(customer.getPoints());
+                    }catch (Exception e){
+                        e.getMessage();
+                        userDoesntExist();
+                    }
+
+                    if (points == 10) {
+                        redeemBtn.setClickable(true);
+                        addBtn.setClickable(false);
+                    } else if (points < 10) {
+                        redeemBtn.setClickable(false);
+                        addBtn.setClickable(true);
+                    }
                 }
-            }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
 
-            }
+                }
+            });
 
 
-        });
     }
 
     public void addPoints(View view){
-
-        //points = Integer.parseInt(customer.getPoints());
         if(points==10) {
             Toast.makeText(this,"15% off next purchase", Toast.LENGTH_LONG).show();
         }
@@ -106,5 +123,15 @@ public class AdminAddPoints extends AppCompatActivity {
     public void cancelTransaction(View view){
         finish();
 
+    }
+
+    public void userExist(){
+        //_authDb = FirebaseAuth.getInstance();
+        //Toast.makeText(this,"Add points to user",Toast.LENGTH_SHORT).show();
+    }
+
+    public void userDoesntExist(){
+        Toast.makeText(this, "USER DOESN'T EXIST",Toast.LENGTH_LONG).show();
+        finish();
     }
 }

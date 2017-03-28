@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -74,15 +75,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onLoginClicked(View view){
+        if(mEmail.getText().toString().trim().length() <= 0){
+            Toast.makeText(getApplicationContext(),"Enter email", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if(mPassword.getText().toString().trim().length() <= 0){
+            Toast.makeText(getApplicationContext(),"Enter password", Toast.LENGTH_SHORT).show();
+            return;
+        }
         login();
     }
 
-    public void adminBtn(View view) {
-        Intent i = new Intent(this, AdminSignIn.class);
-        startActivity(i);
-    }
 
     public void signOut(View view){
+
+        Toast.makeText(MainActivity.this, "BYE BYE", Toast.LENGTH_SHORT).show();
         mAuth.signOut();
     }
 

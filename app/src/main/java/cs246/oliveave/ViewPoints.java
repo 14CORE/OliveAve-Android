@@ -36,6 +36,7 @@ public class ViewPoints extends AppCompatActivity {
     private ImageView image;
     private DonutProgress donutProgress;
 
+
     String newUid;
     User userClient;
 
@@ -45,6 +46,7 @@ public class ViewPoints extends AppCompatActivity {
         setContentView(R.layout.activity_view_points);
         Bundle extras = getIntent().getExtras();
         userClient = new User();
+
         if(extras == null) {
             newUid= null;
         } else {
@@ -70,8 +72,7 @@ public class ViewPoints extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Log.v("E_VALUE", "Data: " + dataSnapshot.getValue());
                 userClient=dataSnapshot.getValue(User.class);
-                name.setText("Hello " + userClient.getName() +
-                        ", you have:");
+                name.setText("Rewards");
                 donutProgress.setProgress(Integer.parseInt(userClient.getPoints()));
 
                 //Setting up QR Code
