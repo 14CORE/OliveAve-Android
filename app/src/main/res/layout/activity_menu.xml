@@ -4,65 +4,15 @@
     android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/button2"
-        android:layout_width="match_parent"
+        android:id="@+id/sign_out"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/checkPoints"
-        android:layout_marginTop="13dp"
-        android:background="@color/black"
-        android:onClick="findStore"
-        android:padding="10dp"
-        android:text="Find a store"
-        android:textColor="@color/white"
-        android:textStyle="bold" />
-
-    <Button
-        android:text="New Products"
-        android:id="@+id/newProducts"
-        android:onClick="newProducts"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="161dp"
-        android:background="@color/black"
-        android:padding="10dp"
-        android:textStyle="bold"
-        android:textColor="@color/white"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <Button
-        android:text="Check my points"
-        android:id="@+id/checkPoints"
-        android:onClick="checkPoints"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/black"
-        android:padding="10dp"
-        android:textStyle="bold"
-        android:textColor="@color/white"
-        android:layout_below="@+id/newProducts"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="15dp" />
-
-    <Button
-        android:id="@+id/adminBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="27dp"
-        android:background="@color/black"
-        android:onClick="adminBtn"
-        android:padding="10dp"
-        android:text="Admin Menu"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:visibility="invisible"/>
+        android:background="@color/red"
+        android:onClick="signOut"
+        android:text="SIGN OUT" />
 
     <TextView
         android:id="@+id/user_name"
@@ -80,14 +30,64 @@
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/sign_out"
-        android:layout_width="wrap_content"
+        android:id="@+id/newProducts"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/red"
-        android:text="SIGN OUT"
-        android:onClick="signOut"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_marginTop="161dp"
+        android:background="@color/black"
+        android:onClick="newProducts"
+        android:padding="10dp"
+        android:text="New Products"
+        android:textColor="@color/white"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/checkPoints"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/newProducts"
+        android:layout_marginTop="15dp"
+        android:background="@color/black"
+        android:onClick="checkPoints"
+        android:padding="10dp"
+        android:text="Check my points"
+        android:textColor="@color/white"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/checkPoints"
+        android:layout_marginTop="13dp"
+        android:background="@color/black"
+        android:onClick="findStore"
+        android:padding="10dp"
+        android:text="Find a store"
+        android:textColor="@color/white"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/adminBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="27dp"
+        android:background="@color/black"
+        android:onClick="adminBtn"
+        android:padding="10dp"
+        android:text="Admin Menu"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:visibility="invisible"/>
 
 </RelativeLayout>
