@@ -101,7 +101,7 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     public void adminBtn(View view) {
-        Intent i = new Intent(this, AdminSignIn.class);
+        Intent i = new Intent(this, AdminMenu.class);
         startActivity(i);
     }
 }

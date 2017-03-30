@@ -26,17 +26,28 @@
         android:layout_alignParentStart="true" />
 
     <Button
-        android:text="ADD POINTS"
+        android:id="@+id/addPointsBtn"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/addPointsBtn"
-
-        android:textColor="@color/white"
         android:onClick="addPoints"
-        android:layout_marginBottom="25dp"
+        android:text="ADD POINTs"
+        android:textColor="@color/white"
+        android:layout_above="@+id/subtractPointsBtn"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="13dp" />
+
+    <Button
+        android:id="@+id/subtractPointsBtn"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:onClick="subtractPoints"
+        android:text="SUBTRACT POINTS"
+        android:textColor="@color/white"
         android:layout_above="@+id/redeemBtn"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="9dp" />
 
     <Button
         android:text="CANCEL"
@@ -70,4 +81,30 @@
         android:layout_below="@+id/userName"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="21dp" />
+
+    <EditText
+        android:id="@+id/amountText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="6dp"
+        android:ems="10"
+        android:hint="Enter Amount (no clearence items)"
+        android:inputType="textPersonName"
+        android:layout_above="@+id/addPointsBtn"
+        android:layout_alignLeft="@+id/checkBox"
+        android:layout_alignStart="@+id/checkBox"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/amountText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="9dp"
+        android:layout_marginStart="9dp"
+        android:text="Points based on amount" />
+
 </RelativeLayout>
