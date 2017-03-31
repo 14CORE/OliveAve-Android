@@ -1,9 +1,5 @@
 package cs246.oliveave;
 
-/**
- * Created by Kevin on 3/2/2017.
- */
-
 public class User {
 
     private String id;
