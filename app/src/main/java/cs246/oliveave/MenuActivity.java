@@ -63,14 +63,6 @@ public class MenuActivity extends AppCompatActivity {
 
     }
 
-    /*
-    @Override
-    public Dialog onCreateDialog(Bundle savedInstance){
-        AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
-        //builder.setMessage()
-
-    }*/
-
     @Override
     protected void onStart() {
         super.onStart();/*

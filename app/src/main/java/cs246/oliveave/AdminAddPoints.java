@@ -1,10 +1,13 @@
 package cs246.oliveave;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputType;
+import android.text.method.KeyListener;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -24,12 +27,9 @@ import com.google.firebase.database.ValueEventListener;
 
 public class AdminAddPoints extends AppCompatActivity {
 
-    TextView userDisplay;
-    String userEmail;
     String userKey;
     private  DatabaseReference _databaseRef;
     private FirebaseAuth _authDb;
-    private FirebaseUser _newUser;
     TextView _userName;
     TextView _userPoints;
     User customer;
@@ -40,9 +40,8 @@ public class AdminAddPoints extends AppCompatActivity {
     Button subtractBtn;
     TextView amountText;
     CheckBox selectAmount;
-    String TAG;
     String localPoints;
-    //final String getOldPoints = customer.getPoints();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +51,17 @@ public class AdminAddPoints extends AppCompatActivity {
         addBtn = (Button) findViewById(R.id.addPointsBtn);
         subtractBtn = (Button) findViewById(R.id.subtractPointsBtn);
         amountText = (TextView) findViewById(R.id.amountText);
+        amountText.setEnabled(false);
         selectAmount = (CheckBox) findViewById(R.id.checkBox);
+        selectAmount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (selectAmount.isChecked())
+                    amountText.setEnabled(true);
+                else
+                    amountText.setEnabled(false);
+            }
+        });
         _userName = (TextView)findViewById(R.id.userName);
         _userPoints = (TextView)findViewById(R.id.userPoints);
 
@@ -113,19 +122,26 @@ public class AdminAddPoints extends AppCompatActivity {
 
     public void addPoints(View view){
         if (!selectAmount.isChecked()){
-            //amountText.setEnabled(true);
             points++;
         }
         else{
-
             if (amountText.getText().toString().compareTo("") == 0)
                 Toast.makeText(this,"Enter an amount", Toast.LENGTH_LONG).show();
             else{
                 String value = amountText.getText().toString();
-                int amount = (int)Double.parseDouble(value);
-                points += amount / 20;
-                // error handling if there is only digits
-                //if amount is empty SEND AN ERROR MESSAGE
+                int amount;
+                boolean success = false;
+                try{
+                    // declared here and bellow just for the purpose of debugging
+                    amount = (int)Double.parseDouble(value);
+                    success = true;
+                } catch (NumberFormatException nfe){
+                    Toast.makeText(this,"Enter a valid amount", Toast.LENGTH_LONG).show();
+                }
+                if (success){
+                    amount = (int)Double.parseDouble(value);
+                    points += amount / 20;
+                }
             }
 
         }
@@ -142,8 +158,9 @@ public class AdminAddPoints extends AppCompatActivity {
 }
 
     public void cancelTransaction(View view){
-        //_databaseRef.child("points").setValue(getOldPoints);
-        finish();
+        Intent intent = new Intent(AdminAddPoints.this, MenuActivity.class);
+        startActivity(intent);
+        //finish();
 
     }
 
