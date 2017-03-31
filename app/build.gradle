@@ -29,6 +29,7 @@ dependencies {
 
 
     compile 'com.android.support:appcompat-v7:25.1.1'
+    //progress bar for points
     compile 'com.android.support:appcompat-v7:25.1.1'
     compile 'com.google.android.gms:play-services-maps:10.2.0'
     compile 'com.google.firebase:firebase-auth:10.2.0'
@@ -37,12 +38,11 @@ dependencies {
     compile 'com.google.android.gms:play-services-auth:10.2.0'
     compile 'com.google.zxing:core:3.2.1'
     compile 'com.journeyapps:zxing-android-embedded:3.2.0@aar'
-    compile 'com.android.support.constraint:constraint-layout:+'
-    testCompile 'junit:junit:4.12'
-    //progress bar for points
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.github.lzyzsd:circleprogress:1.1.0@aar'
     compile 'com.google.firebase:firebase-core:10.2.0'
     compile 'com.google.firebase:firebase-messaging:10.2.0'
+    testCompile 'junit:junit:4.12'
 }
 
 //FIREBASE
