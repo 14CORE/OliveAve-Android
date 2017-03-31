@@ -8,7 +8,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,16 +37,22 @@ public class AdminAddPoints extends AppCompatActivity {
     String mPoints;
     Button redeemBtn;
     Button addBtn;
+    Button subtractBtn;
+    TextView amountText;
+    CheckBox selectAmount;
     String TAG;
+    String localPoints;
+    //final String getOldPoints = customer.getPoints();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_add_points);
         Bundle extras = getIntent().getExtras();
         redeemBtn = (Button)findViewById(R.id.redeemBtn);
-
         addBtn = (Button) findViewById(R.id.addPointsBtn);
-
+        subtractBtn = (Button) findViewById(R.id.subtractPointsBtn);
+        amountText = (TextView) findViewById(R.id.amountText);
+        selectAmount = (CheckBox) findViewById(R.id.checkBox);
         _userName = (TextView)findViewById(R.id.userName);
         _userPoints = (TextView)findViewById(R.id.userPoints);
 
@@ -70,8 +78,6 @@ public class AdminAddPoints extends AppCompatActivity {
     @Override
     protected void onStart(){
         super.onStart();
-
-
             _databaseRef.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -80,18 +86,11 @@ public class AdminAddPoints extends AppCompatActivity {
                         _userName.setText(customer.getName());
                         _userPoints.setText(customer.getPoints() + " points");
                         mPoints = customer.getPoints();
+                        localPoints = customer.getPoints();
                         points = Integer.parseInt(customer.getPoints());
                     }catch (Exception e){
                         e.getMessage();
                         userDoesntExist();
-                    }
-
-                    if (points == 10) {
-                        redeemBtn.setClickable(true);
-                        addBtn.setClickable(false);
-                    } else if (points < 10) {
-                        redeemBtn.setClickable(false);
-                        addBtn.setClickable(true);
                     }
                 }
 
@@ -103,31 +102,49 @@ public class AdminAddPoints extends AppCompatActivity {
 
 
     }
+    public void subtractPoints(View view){
+        if(points > 0) {
+            points--;
+            mPoints = String.valueOf(points);
+            _databaseRef.child("points").setValue(mPoints);
+        }
+    }
+
 
     public void addPoints(View view){
-        if(points==10) {
-            Toast.makeText(this,"15% off next purchase", Toast.LENGTH_LONG).show();
+        if (!selectAmount.isChecked()){
+            //amountText.setEnabled(true);
+            points++;
         }
-        points++;
+        else{
+
+            if (amountText.getText().toString().compareTo("") == 0)
+                Toast.makeText(this,"Enter an amount", Toast.LENGTH_LONG).show();
+            else{
+                String value = amountText.getText().toString();
+                int amount = Integer.parseInt(value);
+                points += amount / 20;
+                // error handling if there is only digits
+                //if amount is empty SEND AN ERROR MESSAGE
+            }
+
+        }
         mPoints = String.valueOf(points);
         _databaseRef.child("points").setValue(mPoints);
-
     }
 
     public void redeemPoints(View view){
-
-        _databaseRef.child("points").setValue("0");
-
+        if(points >= 10){
+            points -= 10;
+            mPoints = String.valueOf(points);
+            _databaseRef.child("points").setValue(mPoints);
+        }
 }
 
     public void cancelTransaction(View view){
+        //_databaseRef.child("points").setValue(getOldPoints);
         finish();
 
-    }
-
-    public void userExist(){
-        //_authDb = FirebaseAuth.getInstance();
-        //Toast.makeText(this,"Add points to user",Toast.LENGTH_SHORT).show();
     }
 
     public void userDoesntExist(){
