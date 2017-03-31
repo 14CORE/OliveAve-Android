@@ -1,10 +1,13 @@
 package cs246.oliveave;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +25,8 @@ public class MenuActivity extends AppCompatActivity {
     TextView adminText;
     private DatabaseReference myFirebaseRef;
     private FirebaseAuth mAuth;
+    TextView pointstText;
+
 
 
     @Override
@@ -34,6 +39,7 @@ public class MenuActivity extends AppCompatActivity {
         userClient = new User();
         admin = (ImageView) findViewById(R.id.adminBtn);
         adminText = (TextView) findViewById(R.id.text_adminBtn);
+        pointstText =(TextView) findViewById(R.id.text_checkPoints);
 
         if(extras == null) {
             newUid = null;
@@ -42,18 +48,28 @@ public class MenuActivity extends AppCompatActivity {
         }
 
         if(newUid.equals("lv6hWWp6mibWOeZZfZpMFh97jrq2")){
-           admin.setVisibility(View.VISIBLE);
-           adminText.setVisibility(View.VISIBLE);
+            admin.setVisibility(View.VISIBLE);
+            adminText.setVisibility(View.VISIBLE);
+            pointstText.setVisibility(View.INVISIBLE);
         }
         else{
             admin.setVisibility(View.INVISIBLE);
             adminText.setVisibility(View.INVISIBLE);
+            pointstText.setVisibility(View.VISIBLE);
         }
 
         myFirebaseRef = FirebaseDatabase.getInstance().getReferenceFromUrl("https://oliveavecs246.firebaseio.com/Users/"+ newUid);
         mAuth = FirebaseAuth.getInstance();
 
     }
+
+    /*
+    @Override
+    public Dialog onCreateDialog(Bundle savedInstance){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+        //builder.setMessage()
+
+    }*/
 
     @Override
     protected void onStart() {
@@ -102,6 +118,11 @@ public class MenuActivity extends AppCompatActivity {
 
     public void adminBtn(View view) {
         Intent i = new Intent(this, AdminSignIn.class);
+        startActivity(i);
+    }
+
+    public void displayStoreInfo(View view){
+        Intent i = new Intent(this, AboutUs.class);
         startActivity(i);
     }
 }
