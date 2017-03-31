@@ -87,7 +87,7 @@ public class AdminAddPoints extends AppCompatActivity {
                         _userPoints.setText(customer.getPoints() + " points");
                         mPoints = customer.getPoints();
                         localPoints = customer.getPoints();
-                        points = Integer.parseInt(customer.getPoints());
+                        points = (int)Double.parseDouble(customer.getPoints());
                     }catch (Exception e){
                         e.getMessage();
                         userDoesntExist();
@@ -122,7 +122,7 @@ public class AdminAddPoints extends AppCompatActivity {
                 Toast.makeText(this,"Enter an amount", Toast.LENGTH_LONG).show();
             else{
                 String value = amountText.getText().toString();
-                int amount = Integer.parseInt(value);
+                int amount = (int)Double.parseDouble(value);
                 points += amount / 20;
                 // error handling if there is only digits
                 //if amount is empty SEND AN ERROR MESSAGE
