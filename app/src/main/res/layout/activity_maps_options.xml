@@ -9,12 +9,21 @@
     android:paddingTop="@dimen/activity_vertical_margin" >
 
     <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:src="@drawable/newlogo"
+        android:id="@+id/logo"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
         android:id="@+id/rexburg"
         android:layout_width="wrap_content"
         android:layout_height="150dp"
         android:onClick="openRexburgMap"
         android:src="@drawable/rexburg_map"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="110dp"
+        android:layout_below="@+id/logo"
         android:layout_alignParentTop="true"
         android:layout_alignRight="@+id/idahoFalls"
         android:layout_alignEnd="@+id/idahoFalls" />
@@ -37,7 +46,7 @@
         android:layout_height="150dp"
         android:onClick="openIFMap"
         android:src="@drawable/if_map"
-        android:layout_marginTop="65dp"
+        android:layout_marginTop="25dp"
         android:layout_below="@+id/text_rexburg"
         android:layout_centerHorizontal="true" />
 

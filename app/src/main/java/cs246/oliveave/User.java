@@ -9,7 +9,6 @@ public class User {
     private String password;
     private String points;
 
-
     public User() {
     }
 
@@ -38,7 +37,6 @@ public class User {
         this.name = name;
     }
 
-
     public String getPhoneNumber() {
         return phoneNumber;
     }
@@ -46,7 +44,6 @@ public class User {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
-
 
     public String getEmail() {
         return email;
