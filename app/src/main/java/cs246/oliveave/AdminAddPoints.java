@@ -41,6 +41,7 @@ public class AdminAddPoints extends AppCompatActivity {
     TextView amountText;
     CheckBox selectAmount;
     String localPoints;
+    Boolean getPoints = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,15 +52,15 @@ public class AdminAddPoints extends AppCompatActivity {
         addBtn = (Button) findViewById(R.id.addPointsBtn);
         subtractBtn = (Button) findViewById(R.id.subtractPointsBtn);
         amountText = (TextView) findViewById(R.id.amountText);
-        amountText.setEnabled(false);
+        amountText.setVisibility(View.INVISIBLE);
         selectAmount = (CheckBox) findViewById(R.id.checkBox);
         selectAmount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (selectAmount.isChecked())
-                    amountText.setEnabled(true);
+                    amountText.setVisibility(View.VISIBLE);
                 else
-                    amountText.setEnabled(false);
+                    amountText.setVisibility(View.INVISIBLE);
             }
         });
         _userName = (TextView)findViewById(R.id.userName);
@@ -78,7 +79,7 @@ public class AdminAddPoints extends AppCompatActivity {
         }catch(Exception e){
             e.getMessage();
             Toast.makeText(this, "USER DOESN'T EXIST",Toast.LENGTH_LONG).show();
-            Intent i = new Intent(this, AdminMenu.class);
+            Intent i = new Intent(this, MenuActivity.class);
             startActivity(i);
             finish();
         }
@@ -95,7 +96,11 @@ public class AdminAddPoints extends AppCompatActivity {
                         _userName.setText(customer.getName());
                         _userPoints.setText(customer.getPoints() + " points");
                         mPoints = customer.getPoints();
-                        localPoints = customer.getPoints();
+                        if (getPoints){
+                            localPoints = mPoints;
+                            getPoints = false;
+                        }
+
                         points = (int)Double.parseDouble(customer.getPoints());
                     }catch (Exception e){
                         e.getMessage();
@@ -108,9 +113,8 @@ public class AdminAddPoints extends AppCompatActivity {
 
                 }
             });
-
-
     }
+
     public void subtractPoints(View view){
         if(points > 0) {
             points--;
@@ -118,7 +122,6 @@ public class AdminAddPoints extends AppCompatActivity {
             _databaseRef.child("points").setValue(mPoints);
         }
     }
-
 
     public void addPoints(View view){
         if (!selectAmount.isChecked()){
@@ -158,9 +161,10 @@ public class AdminAddPoints extends AppCompatActivity {
 }
 
     public void cancelTransaction(View view){
-        Intent intent = new Intent(AdminAddPoints.this, MenuActivity.class);
-        startActivity(intent);
-        //finish();
+        _databaseRef.child("points").setValue(localPoints);
+        //Intent intent = new Intent(AdminAddPoints.this, MenuActivity.class);
+        //startActivity(intent);
+        finish();
 
     }
 

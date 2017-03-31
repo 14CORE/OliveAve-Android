@@ -34,6 +34,7 @@
         <activity android:name=".MenuActivity" />
         <activity android:name=".ViewNewProducts" />
         <activity android:name=".MapsActivity" />
+        <activity android:name=".MapsOptionsActivity" />
         <activity android:name=".AboutUs" android:theme="@style/AppTheme.AboutUsTheme"></activity>
     </application>
 

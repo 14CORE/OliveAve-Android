@@ -1,9 +1,5 @@
 package cs246.oliveave;
 
-/**
- * Created by Kevin on 3/2/2017.
- */
-
 public class User {
 
     private String id;
@@ -12,7 +8,6 @@ public class User {
     private String email;
     private String password;
     private String points;
-
 
     public User() {
     }
@@ -42,7 +37,6 @@ public class User {
         this.name = name;
     }
 
-
     public String getPhoneNumber() {
         return phoneNumber;
     }
@@ -50,7 +44,6 @@ public class User {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
-
 
     public String getEmail() {
         return email;

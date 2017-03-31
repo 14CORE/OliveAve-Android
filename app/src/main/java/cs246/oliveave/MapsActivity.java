@@ -16,11 +16,14 @@ import com.google.android.gms.maps.model.MarkerOptions;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    LatLng oliveAve;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+        Bundle bundle = getIntent().getParcelableExtra("latlng");
+        oliveAve = bundle.getParcelable("cityCoordinates");
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -29,10 +32,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
-        LatLng oliveAve = new LatLng(43.826153, -111.781905);
         mMap.addMarker(new MarkerOptions().position(oliveAve).title("OliveAve"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(oliveAve, 18));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(oliveAve, 16));
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
