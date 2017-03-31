@@ -78,7 +78,7 @@ public class AdminAddPoints extends AppCompatActivity {
         }catch(Exception e){
             e.getMessage();
             Toast.makeText(this, "USER DOESN'T EXIST",Toast.LENGTH_LONG).show();
-            Intent i = new Intent(this, AdminMenu.class);
+            Intent i = new Intent(this, MenuActivity.class);
             startActivity(i);
             finish();
         }
@@ -108,9 +108,8 @@ public class AdminAddPoints extends AppCompatActivity {
 
                 }
             });
-
-
     }
+
     public void subtractPoints(View view){
         if(points > 0) {
             points--;
@@ -118,7 +117,6 @@ public class AdminAddPoints extends AppCompatActivity {
             _databaseRef.child("points").setValue(mPoints);
         }
     }
-
 
     public void addPoints(View view){
         if (!selectAmount.isChecked()){
@@ -158,9 +156,9 @@ public class AdminAddPoints extends AppCompatActivity {
 }
 
     public void cancelTransaction(View view){
-        Intent intent = new Intent(AdminAddPoints.this, MenuActivity.class);
-        startActivity(intent);
-        //finish();
+        //Intent intent = new Intent(AdminAddPoints.this, MenuActivity.class);
+        //startActivity(intent);
+        finish();
 
     }
 
