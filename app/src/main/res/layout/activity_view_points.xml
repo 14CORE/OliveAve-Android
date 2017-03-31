@@ -23,7 +23,9 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintRight_creator="1"
-        tools:layout_constraintTop_creator="1" />
+        tools:layout_constraintTop_creator="1"
+        android:layout_marginTop="2dp"
+        app:layout_constraintHorizontal_bias="0.501" />
 
 
     <ImageView
@@ -32,7 +34,7 @@
         android:layout_height="139dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="74dp"
+        android:layout_marginBottom="87dp"
         android:layout_weight="0.06"
         android:contentDescription="QRCode"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -45,23 +47,83 @@
 
     <com.github.lzyzsd.circleprogress.DonutProgress
         android:id="@+id/progressDonut"
-        android:layout_width="226dp"
-        android:layout_height="214dp"
-        android:layout_marginBottom="46dp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginBottom="162dp"
         android:clickable="false"
+        android:rotation="-90"
         app:donut_finished_color="@color/DarkSeaGreen"
         app:donut_finished_stroke_width="18dp"
-        app:donut_max="30"
-        app:donut_progress="7"
-        app:donut_suffix_text=" Points"
+        app:donut_max="10"
+        app:donut_progress="1"
         app:donut_text_color="@color/Black"
         app:layout_constraintBottom_toTopOf="@+id/image"
-        app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         tools:ignore="MissingConstraints"
         tools:layout_constraintBottom_creator="1"
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintRight_creator="1" />
+
+    <TextView
+        android:id="@+id/Warning"
+        android:layout_width="0dp"
+        android:layout_height="32dp"
+        android:text="Excluding any other promotion.\nPoints don't include clearance and sales."
+        android:textSize="10dp"
+        android:textStyle="italic"
+        android:textAlignment="center"
+        tools:layout_constraintTop_creator="1"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/image"
+        tools:layout_constraintLeft_creator="1"
+        android:textColor="@color/Red"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintVertical_bias="0.724"
+        tools:layout_constraintRight_creator="1"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintHorizontal_bias="0.0" />
+
+    <TextView
+        android:id="@+id/totalPoints"
+        android:layout_width="0dp"
+        android:layout_height="67dp"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="30dp"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toTopOf="@+id/image"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="15dp"
+        app:layout_constraintTop_toBottomOf="@+id/progressDonut"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_marginBottom="9dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintHorizontal_bias="0.511"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="325dp"
+        android:layout_height="63dp"
+        android:text="Every $20.00 you get a point.\nRedeem 10 points to get 35% off  ONE ITEM FOR YOUR NEXT VISIT"
+        android:textAlignment="center"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        android:layout_marginStart="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="0.511"
+        app:layout_constraintVertical_bias="0.517" />
 
 </android.support.constraint.ConstraintLayout>
