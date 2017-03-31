@@ -22,8 +22,6 @@ public class MenuActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     TextView pointstText;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
