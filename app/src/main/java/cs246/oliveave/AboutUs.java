@@ -48,20 +48,6 @@ public class AboutUs extends AppCompatActivity {
         String facebookUrl = getFacebookPageURL(this);
         facebookIntent.setData(Uri.parse(facebookUrl));
         startActivity(facebookIntent);
-        /*
-        final String url = "facebook.com" + "oliveaveboutique";
-        Intent i = new Intent(Intent.ACTION_VIEW);
-        i.setData(Uri.parse(url));
-
-        final PackageManager packageManager = getPackageManager();
-        List<ResolveInfo> list=
-                packageManager.queryIntentActivities(i,
-                        packageManager.MATCH_DEFAULT_ONLY);
-        if(list.size() == 0){
-            final String urlBrowser = "www.facebook.com/oliveaveboutique";
-            i.setData(Uri.parse(urlBrowser));
-        }
-        startActivity(i);*/
     }
 
     public String getFacebookPageURL(Context context) {
