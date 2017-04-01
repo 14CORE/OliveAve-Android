@@ -89,7 +89,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:text="Admin\nMenu"
+        android:text="Scan\nQR Code"
         android:onClick="adminBtn"
         android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
         android:layout_alignBaseline="@+id/text_checkPoints"

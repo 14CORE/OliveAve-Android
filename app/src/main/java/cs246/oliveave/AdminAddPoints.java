@@ -2,25 +2,17 @@ package cs246.oliveave;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
-import android.provider.Settings;
-import android.support.annotation.NonNull;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.text.InputType;
-import android.text.method.KeyListener;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.EditText;
-import android.widget.RadioButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -38,8 +30,9 @@ public class AdminAddPoints extends AppCompatActivity {
     int points;
     String mPoints;
     Button redeemBtn;
-    Button addBtn;
-    Button subtractBtn;
+    ImageView dollarSign;
+    ImageView addBtn;
+    ImageView subtractBtn;
     TextView amountText;
     CheckBox selectAmount;
     String localPoints;
@@ -51,18 +44,24 @@ public class AdminAddPoints extends AppCompatActivity {
         setContentView(R.layout.activity_admin_add_points);
         Bundle extras = getIntent().getExtras();
         redeemBtn = (Button)findViewById(R.id.redeemBtn);
-        addBtn = (Button) findViewById(R.id.addPointsBtn);
-        subtractBtn = (Button) findViewById(R.id.subtractPointsBtn);
+        addBtn = (ImageView) findViewById(R.id.addPointsBtn);
+        subtractBtn = (ImageView) findViewById(R.id.subtractPointsBtn);
+        dollarSign = (ImageView) findViewById(R.id.ic_dollar);
+        dollarSign.setVisibility(View.INVISIBLE);
         amountText = (TextView) findViewById(R.id.amountText);
         amountText.setVisibility(View.INVISIBLE);
         selectAmount = (CheckBox) findViewById(R.id.checkBox);
         selectAmount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (selectAmount.isChecked())
+                if (selectAmount.isChecked()) {
                     amountText.setVisibility(View.VISIBLE);
-                else
+                    dollarSign.setVisibility(View.VISIBLE);
+                }
+                else {
                     amountText.setVisibility(View.INVISIBLE);
+                    dollarSign.setVisibility(View.INVISIBLE);
+                }
             }
         });
         _userName = (TextView)findViewById(R.id.userName);
@@ -160,7 +159,12 @@ public class AdminAddPoints extends AppCompatActivity {
             mPoints = String.valueOf(points);
             _databaseRef.child("points").setValue(mPoints);
         }
-}
+    }
+
+    public void saveTransaction (View view) {
+        Toast.makeText(this, "POINTS SAVED SUCCESSFULLY",Toast.LENGTH_LONG).show();
+        finish();
+    }
 
     public void cancelTransaction(View view){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);

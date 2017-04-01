@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_points"
     android:layout_width="match_parent"
@@ -10,103 +11,115 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="cs246.oliveave.AdminAddPoints">
 
-    <Button
-        android:text="REDEEM"
-
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/redeemBtn"
-
-        android:textColor="@color/white"
-
-        android:onClick="redeemPoints"
-        android:layout_marginBottom="19dp"
-        android:layout_above="@+id/cancelPointsBtn"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <Button
-        android:id="@+id/addPointsBtn"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:onClick="addPoints"
-        android:text="ADD POINTs"
-        android:textColor="@color/white"
-        android:layout_above="@+id/subtractPointsBtn"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="13dp" />
-
-    <Button
-        android:id="@+id/subtractPointsBtn"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:onClick="subtractPoints"
-        android:text="SUBTRACT POINTS"
-        android:textColor="@color/white"
-        android:layout_above="@+id/redeemBtn"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="9dp" />
-
-    <Button
-        android:text="CANCEL YOUR CHANGES"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/cancelPointsBtn"
-        android:background="@color/red"
-        android:textColor="@color/white"
-        android:onClick="cancelTransaction"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
     <TextView
         android:id="@+id/userName"
-        android:textSize="50dp"
-        android:hint="User Name"
-        android:textColor="@color/black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:hint="User Name"
+        android:textColor="@color/black"
+        android:textSize="50dp" />
 
     <TextView
         android:id="@+id/userPoints"
-        android:hint="points"
-        android:textColor="@color/lime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="75dp"
         android:layout_below="@+id/userName"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="21dp" />
-
-    <EditText
-        android:id="@+id/amountText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="6dp"
-        android:ems="10"
-        android:hint="Enter Amount (no clearence items)"
-        android:inputType="number"
-        android:layout_above="@+id/addPointsBtn"
-        android:layout_alignLeft="@+id/checkBox"
-        android:layout_alignStart="@+id/checkBox"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_marginTop="20dp"
+        android:hint="points"
+        android:textColor="@color/black"
+        android:textSize="75dp" />
 
     <CheckBox
         android:id="@+id/checkBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/amountText"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="9dp"
-        android:layout_marginStart="9dp"
+        android:layout_below="@+id/userPoints"
+        android:layout_marginTop="70dp"
         android:text="Points based on total price" />
 
+    <ImageView
+        android:id="@+id/ic_dollar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_dollar_black"
+        android:layout_alignTop="@+id/amountText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/addPointsBtn" />
 
+    <EditText
+        android:id="@+id/amountText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/checkBox"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="6dp"
+        android:ems="10"
+        android:hint="Enter Amount (no clearence items)"
+        android:inputType="number"
+        android:layout_toEndOf="@+id/ic_dollar"
+        android:layout_toRightOf="@+id/ic_dollar" />
+
+    <ImageView
+        android:id="@+id/addPointsBtn"
+        android:layout_width="155dp"
+        android:layout_height="45dp"
+        android:src="@drawable/ic_add_white"
+        android:onClick="addPoints"
+        android:background="@color/black"
+        android:layout_marginTop="35dp"
+        android:layout_below="@+id/amountText" />
+
+    <ImageView
+        android:id="@+id/subtractPointsBtn"
+        android:layout_width="155dp"
+        android:layout_height="45dp"
+        android:src="@drawable/ic_remove_white"
+        android:onClick="subtractPoints"
+        android:background="@color/black"
+        android:layout_alignTop="@+id/addPointsBtn"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:id="@+id/savePointsBtn"
+        android:layout_width="155dp"
+        android:layout_height="wrap_content"
+        android:text="SAVE CHANGES"
+        android:background="@color/black"
+        android:onClick="saveTransaction"
+        android:textColor="@color/white"
+        android:layout_below="@+id/addPointsBtn"
+        android:layout_marginTop="15dp"/>
+
+    <Button
+        android:id="@+id/cancelPointsBtn"
+        android:layout_width="155dp"
+        android:layout_height="wrap_content"
+        android:text="CANCEL CHANGES"
+        android:background="@color/black"
+        android:onClick="cancelTransaction"
+        android:textColor="@color/white"
+        android:layout_alignLeft="@+id/subtractPointsBtn"
+        android:layout_alignRight="@+id/subtractPointsBtn"
+        android:layout_below="@+id/subtractPointsBtn"
+        android:layout_marginTop="15dp"/>
+
+    <Button
+        android:text="REDEEM"
+        android:id="@+id/redeemBtn"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:layout_marginTop="15dp"
+        android:background="@color/black"
+        android:onClick="redeemPoints"
+        android:layout_below="@+id/savePointsBtn"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
