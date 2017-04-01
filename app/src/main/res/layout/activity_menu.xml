@@ -90,7 +90,7 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:text="Admin\nMenu"
-        android:onClick="checkPoints"
+        android:onClick="adminBtn"
         android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
         android:layout_alignBaseline="@+id/text_checkPoints"
         android:layout_alignBottom="@+id/text_checkPoints"
