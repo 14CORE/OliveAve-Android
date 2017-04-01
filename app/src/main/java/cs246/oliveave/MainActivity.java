@@ -1,10 +1,12 @@
 package cs246.oliveave;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -96,13 +98,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void resetPassword(View view){
-        String email = mEmail.getText().toString();
+        final String email = mEmail.getText().toString();
         if(email.compareTo("") == 0){
             Toast.makeText(MainActivity.this, "Enter email", Toast.LENGTH_SHORT).show();
         }
         else{
-            mAuth.sendPasswordResetEmail(email);
-            Toast.makeText(MainActivity.this, "Password reset email sent", Toast.LENGTH_SHORT).show();
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("Are you sure you want to reset your password?")
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            mAuth.sendPasswordResetEmail(email);
+                            Toast.makeText(MainActivity.this, "Password reset email sent", Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .setNegativeButton("Cancel", null);
+            AlertDialog alert = builder.create();
+            alert.show();
+
         }
     }
 }

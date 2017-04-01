@@ -1,9 +1,11 @@
 package cs246.oliveave;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
@@ -161,10 +163,24 @@ public class AdminAddPoints extends AppCompatActivity {
 }
 
     public void cancelTransaction(View view){
-        _databaseRef.child("points").setValue(localPoints);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setMessage("Are you sure you want to cancel your changes?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        _databaseRef.child("points").setValue(localPoints);
+                        finish();
+                    }
+                })
+                .setNegativeButton("Cancel", null);
+        AlertDialog alert = builder.create();
+        alert.show();
+
+
         //Intent intent = new Intent(AdminAddPoints.this, MenuActivity.class);
         //startActivity(intent);
-        finish();
+
 
     }
 
