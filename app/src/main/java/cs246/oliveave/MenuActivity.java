@@ -71,7 +71,7 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     public void signOut(View view) {
-        Toast.makeText(this, "BYE BYE", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Logging out...", Toast.LENGTH_SHORT).show();
         mAuth.signOut();
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);

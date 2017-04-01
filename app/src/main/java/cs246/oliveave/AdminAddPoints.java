@@ -176,12 +176,6 @@ public class AdminAddPoints extends AppCompatActivity {
                 .setNegativeButton("Cancel", null);
         AlertDialog alert = builder.create();
         alert.show();
-
-
-        //Intent intent = new Intent(AdminAddPoints.this, MenuActivity.class);
-        //startActivity(intent);
-
-
     }
 
     public void userDoesntExist(){
