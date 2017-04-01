@@ -23,13 +23,11 @@ public class MenuActivity extends AppCompatActivity {
     User userClient;
     String newUid;
     ImageView admin;
-    TextView user_name;
     TextView adminText;
     private DatabaseReference myFirebaseRef;
     private FirebaseAuth mAuth;
     TextView pointstText;
     private IntentIntegrator qrScan;
-    //String uidToNextAct;
 
 
     @Override

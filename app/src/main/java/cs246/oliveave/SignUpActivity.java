@@ -33,7 +33,6 @@ public class SignUpActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private ProgressDialog mProgressDialog;
     private EditText reenterPassword;
-
     String uidToNextAct;
 
     @Override

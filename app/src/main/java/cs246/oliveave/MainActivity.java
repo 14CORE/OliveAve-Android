@@ -29,10 +29,6 @@ public class MainActivity extends AppCompatActivity {
     private ProgressDialog progressDialog;
     private FirebaseAuth mAuth;
     private TextView signUp;
-    //private DatabaseReference myFirebaseRef = FirebaseDatabase.getInstance().getReferenceFromUrl("https://oliveavecs246.firebaseio.com/");
-    //User user;
-    //FirebaseUser mFirebaseUser;
-    //private FirebaseAuth.AuthStateListener mAuthListener;
     String uidToNextAct;
 
 

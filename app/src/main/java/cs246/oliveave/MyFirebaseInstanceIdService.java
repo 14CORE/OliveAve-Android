@@ -21,7 +21,4 @@ public class MyFirebaseInstanceIdService extends FirebaseInstanceIdService {
 
     }
 
-    private void sendRegistrationToServer(String token) {
-        //Not required for this current project
-    }
 }
