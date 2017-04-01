@@ -9,6 +9,16 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/text_signOut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:text="Sign out"
+        android:onClick="signOut" />
+
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -16,45 +26,43 @@
         android:id="@+id/logo"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="30dp" />
 
     <ImageView
         android:id="@+id/newProducts"
         android:layout_width="match_parent"
-        android:layout_height="125dp"
+        android:layout_height="120dp"
         android:onClick="newProducts"
         android:src="@drawable/olv_0434"
         android:layout_below="@+id/logo"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="22dp" />
 
     <TextView
         android:gravity="center_horizontal"
-        android:id="@+id/textView4"
+        android:id="@+id/text_newProducts"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New\n Products"
         android:onClick="newProducts"
         android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
-        android:layout_marginRight="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="34dp"
-        android:layout_alignBottom="@+id/newProducts"
+        android:layout_marginRight="19dp"
+        android:layout_marginEnd="19dp"
+        android:layout_marginBottom="30dp"
+        android:layout_above="@+id/checkPoints"
         android:layout_toLeftOf="@+id/text_checkPoints"
         android:layout_toStartOf="@+id/text_checkPoints" />
 
     <ImageView
         android:id="@+id/checkPoints"
         android:layout_width="match_parent"
-        android:layout_height="125dp"
+        android:layout_height="120dp"
         android:onClick="checkPoints"
         android:src="@drawable/mirrored2"
         android:layout_below="@id/newProducts"
         android:layout_marginTop="16dp"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_centerVertical="true" />
 
     <TextView
         android:id="@+id/text_checkPoints"
@@ -66,16 +74,15 @@
         android:text="Check\n my Points"
         android:onClick="checkPoints"
         android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
-        android:layout_marginRight="60dp"
-        android:layout_marginEnd="60dp"
-        android:layout_centerVertical="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_above="@+id/findStore"
+        android:layout_toLeftOf="@+id/text_signOut"
+        android:layout_toStartOf="@+id/text_signOut"
+        android:layout_marginBottom="30dp" />
 
     <ImageView
         android:id="@+id/adminBtn"
         android:layout_width="match_parent"
-        android:layout_height="125dp"
+        android:layout_height="120dp"
         android:onClick="adminBtn"
         android:src="@drawable/mirrored2"
         android:layout_below="@id/newProducts"
@@ -92,17 +99,15 @@
         android:text="Scan\nQR Code"
         android:onClick="adminBtn"
         android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
-        android:layout_alignBaseline="@+id/text_checkPoints"
-        android:layout_alignBottom="@+id/text_checkPoints"
-        android:layout_toRightOf="@+id/text_findStore"
-        android:layout_toEndOf="@+id/text_findStore"
-        android:layout_marginLeft="18dp"
-        android:layout_marginStart="18dp" />
+        android:layout_marginTop="29dp"
+        android:layout_alignTop="@+id/checkPoints"
+        android:layout_toLeftOf="@+id/text_signOut"
+        android:layout_toStartOf="@+id/text_signOut" />
 
     <ImageView
         android:id="@+id/findStore"
         android:layout_width="match_parent"
-        android:layout_height="125dp"
+        android:layout_height="120dp"
         android:onClick="findStore"
         android:src="@drawable/olv_1254"
         android:layout_below="@id/checkPoints"
@@ -119,34 +124,18 @@
         android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
         android:layout_marginBottom="12dp"
         android:layout_alignBottom="@+id/findStore"
-        android:layout_alignLeft="@+id/textView4"
-        android:layout_alignStart="@+id/textView4" />
+        android:layout_alignLeft="@+id/text_newProducts"
+        android:layout_alignStart="@+id/text_newProducts" />
 
     <ImageView
         android:id="@+id/aboutUs"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:text="ABOUT US"
         android:src="@drawable/about_us"
         android:clickable="true"
         android:onClick="displayStoreInfo"
-        android:layout_alignTop="@+id/signOutBtn"
-        android:layout_alignLeft="@+id/text_checkPoints"
-        android:layout_alignStart="@+id/text_checkPoints" />
-
-    <Button
-        android:id="@+id/signOutBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="SIGN OUT"
-        android:onClick="signOut"
-        android:background="@color/black"
-        android:textColor="@color/white"
-        android:textStyle="bold"
         android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/textView4"
-        android:layout_alignEnd="@+id/textView4"
-        android:layout_marginRight="20dp"
-        android:layout_marginEnd="20dp" />
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
