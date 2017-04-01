@@ -49,5 +49,4 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         oliveAve.latitude + "," + oliveAve.longitude));
         startActivity(intent);
     }
-
 }
