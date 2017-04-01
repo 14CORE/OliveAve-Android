@@ -55,7 +55,7 @@
         app:donut_finished_color="@color/DarkSeaGreen"
         app:donut_finished_stroke_width="18dp"
         app:donut_max="10"
-        app:donut_progress="1"
+        app:donut_progress="0"
         app:donut_text_color="@color/Black"
         app:layout_constraintBottom_toTopOf="@+id/image"
         app:layout_constraintLeft_toLeftOf="parent"

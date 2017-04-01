@@ -1,13 +1,10 @@
 package cs246.oliveave;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -70,24 +67,7 @@ public class MenuActivity extends AppCompatActivity {
 
     @Override
     protected void onStart() {
-        super.onStart();/*
-        user_name = (TextView) findViewById(R.id.user_name);
-        //Referring to the name of the User who has logged in currently and adding a valueChangeListener
-        myFirebaseRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                userClient=dataSnapshot.getValue(User.class);
-                // To say hello and UpperCase the first letter of the name only
-                user_name.setText("Hello, " + userClient.getName().substring(0,1).toUpperCase() +
-                        userClient.getName().substring(1));
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-        */
+        super.onStart();
     }
 
     public void signOut(View view) {
@@ -109,7 +89,7 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     public void findStore(View view) {
-        Intent intent = new Intent(MenuActivity.this, MapsActivity.class);
+        Intent intent = new Intent(MenuActivity.this, MapsOptionsActivity.class);
         startActivity(intent);
     }
 
