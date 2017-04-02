@@ -4,7 +4,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -13,11 +12,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.GetTokenResult;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -65,17 +60,6 @@ public class ViewPoints extends AppCompatActivity {
         myFirebaseRef = FirebaseDatabase.getInstance().
                 getReferenceFromUrl("https://oliveavecs246.firebaseio.com/Users/"+ newUid);
         mAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = mAuth.getCurrentUser();
-        user.getToken(true).addOnCompleteListener(this, new OnCompleteListener<GetTokenResult>() {
-            @Override
-            public void onComplete(@NonNull Task<GetTokenResult> task) {
-                if (task.isSuccessful()) {
-                    Log.d("oi", "token=" + task.getResult().getToken());
-                } else {
-                    Log.e("oi", "exception=" +task.getException().toString());
-                }
-            }
-        });
         donutProgress = (ProgressBar) findViewById(R.id.progressDonut);
     }
 
