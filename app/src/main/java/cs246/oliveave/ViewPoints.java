@@ -4,15 +4,21 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
-import com.github.lzyzsd.circleprogress.DonutProgress;
-import com.google.firebase.database.DataSnapshot;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GetTokenResult;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -34,8 +40,8 @@ public class ViewPoints extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private TextView name;
     private ImageView image;
-    private DonutProgress donutProgress;
-
+    private ProgressBar donutProgress;
+    private TextView _totalPoints;
 
     String newUid;
     User userClient;
@@ -46,6 +52,7 @@ public class ViewPoints extends AppCompatActivity {
         setContentView(R.layout.activity_view_points);
         Bundle extras = getIntent().getExtras();
         userClient = new User();
+        _totalPoints = (TextView) findViewById(R.id.totalPoints);
 
         if(extras == null) {
             newUid= null;
@@ -58,7 +65,18 @@ public class ViewPoints extends AppCompatActivity {
         myFirebaseRef = FirebaseDatabase.getInstance().
                 getReferenceFromUrl("https://oliveavecs246.firebaseio.com/Users/"+ newUid);
         mAuth = FirebaseAuth.getInstance();
-        donutProgress = (DonutProgress) findViewById(R.id.progressDonut);
+        FirebaseUser user = mAuth.getCurrentUser();
+        user.getToken(true).addOnCompleteListener(this, new OnCompleteListener<GetTokenResult>() {
+            @Override
+            public void onComplete(@NonNull Task<GetTokenResult> task) {
+                if (task.isSuccessful()) {
+                    Log.d("oi", "token=" + task.getResult().getToken());
+                } else {
+                    Log.e("oi", "exception=" +task.getException().toString());
+                }
+            }
+        });
+        donutProgress = (ProgressBar) findViewById(R.id.progressDonut);
     }
 
     @Override
@@ -74,6 +92,7 @@ public class ViewPoints extends AppCompatActivity {
                 userClient=dataSnapshot.getValue(User.class);
                 name.setText("Rewards");
                 donutProgress.setProgress(Integer.parseInt(userClient.getPoints()));
+                _totalPoints.setText(userClient.getPoints() + " points");
 
                 //Setting up QR Code
                 image = (ImageView) findViewById(R.id.image);
